@@ -1,0 +1,124 @@
+C:\projects\mdx\m5\lib>python demo_itom.py -t mdx_import.bcbsnc_20160303_pro_address -e on -l 2 
+Connecting to database
+     ->host='zeta.mdx.med' dbname='mdx_m5_devel' user='mdx' password='mdx'
+Connected!
+
+Ignoring extra_record_status for extra
+Ignoring extra_record_status for record_status
+Failing pro_identifier for identifier
+Failing pro_degree_types for types
+Failing lic_prof for prof
+Failing pra1_identifier for identifier
+Ignoring extra_county for extra
+Ignoring extra_county for county
+Ignoring extra_phone_ext_nbr for extra
+Ignoring extra_phone_ext_nbr for phone_ext_nbr
+Ignoring extra_fax_ext_nbr for extra
+Ignoring extra_fax_ext_nbr for fax_ext_nbr
+
+Importing table mdx_import.bcbsnc_20160303_pro_address
+(1) rows id=151468416
+impt
++--id: 151468416
++--status: None
++--date: None
++--fail_msg: None
+|  
++--impt.pro[0]
+|  +--npi: None
+|  +--record_status: U
+|  +--display_name: MICHAEL MEHRDAD ABAIAN
+|  +--suffix: 
+|  +--last_name: Abaian
+|  +--first_name: Michael
+|  +--middle_name: M
+|  +--title: DDS
+|  +--type_ids: {4}
+|  +--gender: None
+|  |  
+|  +--impt.pro[0].degree[0]
+|  |  
+|  +--impt.pro[0].lic[0]
+|  |  
+|  +--impt.pro[0].prof[0]
+|  |  +--code: DDS
+|  |  
+|  +--impt.pro[0].pra[1]
+|  |  +--record_status: U
+|  |  |  
+|  |  +--impt.pro[0].pra[1].facil[0]
+|  |  |  +--name: None
+|  |  |  +--city: Bell
+|  |  |  +--state: CA
+|  |  |  +--zip: 90201
+|  |  |  +--record_status: U
+|  |  |  |  
+|  |  |  +--impt.pro[0].pra[1].facil[0].addr[0]
+|  |  |  |  +--name: None
+|  |  |  |  +--line1: 6905 1/2 Atlantic Ave
+|  |  |  |  +--is_primary: Y
+|  |  |  |  |  
+|  |  |  |  +--impt.pro[0].pra[1].facil[0].addr[0].phone[1]
+|  |  |  |  |  +--type_code: V
+|  |  |  |  |  +--number: (323) 773-5029
+|  |  |  |  |  +--is_primary: Y
+|  |  |  |  |  +--record_status: U
+|  |  |  |  |  
+|  |  |  |  +--impt.pro[0].pra[1].facil[0].addr[0].phone[2]
+|  |  |  |  |  +--type_code: F
+|  |  |  |  |  +--number: (323) 773-5032
+|  |  |  |  |  +--record_status: U
+
+(2) rows id=151468417
+impt
++--id: 151468417
++--status: None
++--date: None
++--fail_msg: None
+|  
++--impt.pro[0]
+|  +--npi: None
+|  +--record_status: U
+|  +--display_name: MICHAEL MEHRDAD ABAIAN
+|  +--suffix: 
+|  +--last_name: Abaian
+|  +--first_name: Michael
+|  +--middle_name: M
+|  +--title: DDS
+|  +--type_ids: {4}
+|  +--gender: None
+|  |  
+|  +--impt.pro[0].degree[0]
+|  |  
+|  +--impt.pro[0].lic[0]
+|  |  
+|  +--impt.pro[0].prof[0]
+|  |  +--code: DDS
+|  |  
+|  +--impt.pro[0].pra[1]
+|  |  +--record_status: U
+|  |  |  
+|  |  +--impt.pro[0].pra[1].facil[0]
+|  |  |  +--name: None
+|  |  |  +--city: LOS ANGELES
+|  |  |  +--state: CA
+|  |  |  +--zip: 90063
+|  |  |  +--record_status: U
+|  |  |  |  
+|  |  |  +--impt.pro[0].pra[1].facil[0].addr[0]
+|  |  |  |  +--name: None
+|  |  |  |  +--line1: 3061 WABASH AVE
+|  |  |  |  +--is_primary: Y
+|  |  |  |  |  
+|  |  |  |  +--impt.pro[0].pra[1].facil[0].addr[0].phone[1]
+|  |  |  |  |  +--type_code: V
+|  |  |  |  |  +--number: (323) 266-8400
+|  |  |  |  |  +--is_primary: Y
+|  |  |  |  |  +--record_status: U
+|  |  |  |  |  
+|  |  |  |  +--impt.pro[0].pra[1].facil[0].addr[0].phone[2]
+|  |  |  |  |  +--type_code: F
+|  |  |  |  |  +--number: (323) 266-8080
+|  |  |  |  |  +--record_status: U
+
+End 0:00:00.159000
