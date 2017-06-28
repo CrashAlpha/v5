@@ -127,7 +127,7 @@ def main(argv):
          if impt.pro.has("mda"):
             impt.pro.mda[0].dest_url = "YYYYY"
          else:
-            impt.pro.mda_add_new(impt.Mda(), 0)
+            impt.pro.mda_add(0)
             impt.pro.mda.dest_url = "ZZZZZ"
          
       echo("impt.id=%s impt.pro.full_name=%s, mda.dest_url=%s" % (impt.id, impt.pro.full_name, impt.pro.mda.dest_url))

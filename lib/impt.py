@@ -1,5 +1,5 @@
 # From mdx_lib.impt_generate_itom_py()
-# Impt class ORM based on the Import Template Object Model (iTOM) generated on 2017-06-27 19:18:19.102916-04
+# Impt class ORM based on the Import Template Object Model (iTOM) generated on 2017-06-27 23:13:09.399215-04
 from itom import *
 
 # Import Template object
@@ -22,26 +22,41 @@ class Impt(ItomDoc):
 		self._facil = {}
 		self._pro = {}
 
-	# facil member impt-object methods and properties
-	#
-	def facil_add(self, p_arg1, p_arg2=None):
+	#	facil member impt-object methods and properties
+	#		Parameters
+	#			arg1: instance of impt-object class Impt.Facil
+	#			arg2: index for instance, if None, 0 is assumed
+	#		- or -
+	#			arg1: index for instance, if None, 0 is assumed
+	#			      instance of impt-object class Impt.Facil
+	#			      created internally
 
-		if p_arg2 is None:
-			obj = self.Facil()
+	def facil_add(self, p_arg1, *args):
+		if len(args) == 0:
+			obj = Impt.Facil()
 			idx = p_arg1
 		else:
 			obj = p_arg1
-			idx = p_arg2
-
+			idx = args[0]
+		if idx is None:
+			idx = 0
 		path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
 		self._facil[idx] = obj
 		self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
 		self._facil[idx].meta_.core = self.meta_.Core("facility")
 		self.meta_.active_objects_add_new("facil")
 
-	def facil_add_new(self, p_facil, p_index=None):
-		if p_index not in self._facil:
-			self.facil_add(p_facil, p_index)
+	def facil_add_new(self, p_arg1, *args):
+		if len(args) == 0:
+			obj = Impt.Facil()
+			idx = p_arg1
+		else:
+			obj = p_arg1
+			idx = args[0]
+		if idx is None:
+			idx = 0
+		if idx not in self._facil:
+			self.facil_add(obj, idx)
 
 	@property
 	def facil(self):
@@ -53,26 +68,41 @@ class Impt(ItomDoc):
 	def facil_indexes(self):
 		return self._facil.keys()
 
-	# pro member impt-object methods and properties
-	#
-	def pro_add(self, p_arg1, p_arg2=None):
+	#	pro member impt-object methods and properties
+	#		Parameters
+	#			arg1: instance of impt-object class Impt.Pro
+	#			arg2: index for instance, if None, 0 is assumed
+	#		- or -
+	#			arg1: index for instance, if None, 0 is assumed
+	#			      instance of impt-object class Impt.Pro
+	#			      created internally
 
-		if p_arg2 is None:
-			obj = self.Pro()
+	def pro_add(self, p_arg1, *args):
+		if len(args) == 0:
+			obj = Impt.Pro()
 			idx = p_arg1
 		else:
 			obj = p_arg1
-			idx = p_arg2
-
+			idx = args[0]
+		if idx is None:
+			idx = 0
 		path_text = self.meta_.path.text + ".pro[" + str(idx) + "]"
 		self._pro[idx] = obj
 		self._pro[idx].meta_ = Itom.Meta_(path_text, idx, False)
 		self._pro[idx].meta_.core = self.meta_.Core("provider")
 		self.meta_.active_objects_add_new("pro")
 
-	def pro_add_new(self, p_pro, p_index=None):
-		if p_index not in self._pro:
-			self.pro_add(p_pro, p_index)
+	def pro_add_new(self, p_arg1, *args):
+		if len(args) == 0:
+			obj = Impt.Pro()
+			idx = p_arg1
+		else:
+			obj = p_arg1
+			idx = args[0]
+		if idx is None:
+			idx = 0
+		if idx not in self._pro:
+			self.pro_add(obj, idx)
 
 	@property
 	def pro(self):
@@ -195,26 +225,41 @@ class Impt(ItomDoc):
 			self._phone = {}
 			self._spe = {}
 
-		# awd member impt-object methods and properties
-		#
-		def awd_add(self, p_arg1, p_arg2=None):
+		#	awd member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Awd
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Awd
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Awd()
+		def awd_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
 			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._awd[idx].meta_.core = self.meta_.Core("award")
 			self.meta_.active_objects_add_new("awd")
 
-		def awd_add_new(self, p_awd, p_index=None):
-			if p_index not in self._awd:
-				self.awd_add(p_awd, p_index)
+		def awd_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._awd:
+				self.awd_add(obj, idx)
 
 		@property
 		def awd(self):
@@ -226,26 +271,41 @@ class Impt(ItomDoc):
 		def awd_indexes(self):
 			return self._awd.keys()
 
-		# datum member impt-object methods and properties
-		#
-		def datum_add(self, p_arg1, p_arg2=None):
+		#	datum member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Datum
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Datum
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Datum()
+		def datum_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
 			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._datum[idx].meta_.core = self.meta_.Core("datum")
 			self.meta_.active_objects_add_new("datum")
 
-		def datum_add_new(self, p_datum, p_index=None):
-			if p_index not in self._datum:
-				self.datum_add(p_datum, p_index)
+		def datum_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._datum:
+				self.datum_add(obj, idx)
 
 		@property
 		def datum(self):
@@ -257,26 +317,41 @@ class Impt(ItomDoc):
 		def datum_indexes(self):
 			return self._datum.keys()
 
-		# extid member impt-object methods and properties
-		#
-		def extid_add(self, p_arg1, p_arg2=None):
+		#	extid member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Extid
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Extid
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Extid()
+		def extid_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
 			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._extid[idx].meta_.core = self.meta_.Core("extid")
 			self.meta_.active_objects_add_new("extid")
 
-		def extid_add_new(self, p_extid, p_index=None):
-			if p_index not in self._extid:
-				self.extid_add(p_extid, p_index)
+		def extid_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._extid:
+				self.extid_add(obj, idx)
 
 		@property
 		def extid(self):
@@ -288,26 +363,41 @@ class Impt(ItomDoc):
 		def extid_indexes(self):
 			return self._extid.keys()
 
-		# ident member impt-object methods and properties
-		#
-		def ident_add(self, p_arg1, p_arg2=None):
+		#	ident member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Ident
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Ident
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Ident()
+		def ident_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
 			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._ident[idx].meta_.core = self.meta_.Core("identifier")
 			self.meta_.active_objects_add_new("ident")
 
-		def ident_add_new(self, p_ident, p_index=None):
-			if p_index not in self._ident:
-				self.ident_add(p_ident, p_index)
+		def ident_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._ident:
+				self.ident_add(obj, idx)
 
 		@property
 		def ident(self):
@@ -319,26 +409,41 @@ class Impt(ItomDoc):
 		def ident_indexes(self):
 			return self._ident.keys()
 
-		# insp member impt-object methods and properties
-		#
-		def insp_add(self, p_arg1, p_arg2=None):
+		#	insp member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Insp
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Insp
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Insp()
+		def insp_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Insp()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".insp[" + str(idx) + "]"
 			self._insp[idx] = obj
 			self._insp[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._insp[idx].meta_.core = self.meta_.Core("ins_plan")
 			self.meta_.active_objects_add_new("insp")
 
-		def insp_add_new(self, p_insp, p_index=None):
-			if p_index not in self._insp:
-				self.insp_add(p_insp, p_index)
+		def insp_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Insp()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._insp:
+				self.insp_add(obj, idx)
 
 		@property
 		def insp(self):
@@ -350,25 +455,40 @@ class Impt(ItomDoc):
 		def insp_indexes(self):
 			return self._insp.keys()
 
-		# lang member impt-object methods and properties
-		#
-		def lang_add(self, p_arg1, p_arg2=None):
+		#	lang member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Lang
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Lang
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Lang()
+		def lang_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lang()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".lang[" + str(idx) + "]"
 			self._lang[idx] = obj
 			self._lang[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self.meta_.active_objects_add_new("lang")
 
-		def lang_add_new(self, p_lang, p_index=None):
-			if p_index not in self._lang:
-				self.lang_add(p_lang, p_index)
+		def lang_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lang()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._lang:
+				self.lang_add(obj, idx)
 
 		@property
 		def lang(self):
@@ -380,26 +500,41 @@ class Impt(ItomDoc):
 		def lang_indexes(self):
 			return self._lang.keys()
 
-		# mda member impt-object methods and properties
-		#
-		def mda_add(self, p_arg1, p_arg2=None):
+		#	mda member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Mda
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Mda
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Mda()
+		def mda_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Mda()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".mda[" + str(idx) + "]"
 			self._mda[idx] = obj
 			self._mda[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._mda[idx].meta_.core = self.meta_.Core("media")
 			self.meta_.active_objects_add_new("mda")
 
-		def mda_add_new(self, p_mda, p_index=None):
-			if p_index not in self._mda:
-				self.mda_add(p_mda, p_index)
+		def mda_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Mda()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._mda:
+				self.mda_add(obj, idx)
 
 		@property
 		def mda(self):
@@ -411,26 +546,41 @@ class Impt(ItomDoc):
 		def mda_indexes(self):
 			return self._mda.keys()
 
-		# parsed member impt-object methods and properties
-		#
-		def parsed_add(self, p_arg1, p_arg2=None):
+		#	parsed member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Parsed
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Parsed
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Parsed()
+		def parsed_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Parsed()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".parsed[" + str(idx) + "]"
 			self._parsed[idx] = obj
 			self._parsed[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._parsed[idx].meta_.core = self.meta_.Core("address")
 			self.meta_.active_objects_add_new("parsed")
 
-		def parsed_add_new(self, p_parsed, p_index=None):
-			if p_index not in self._parsed:
-				self.parsed_add(p_parsed, p_index)
+		def parsed_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Parsed()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._parsed:
+				self.parsed_add(obj, idx)
 
 		@property
 		def parsed(self):
@@ -442,26 +592,41 @@ class Impt(ItomDoc):
 		def parsed_indexes(self):
 			return self._parsed.keys()
 
-		# phone member impt-object methods and properties
-		#
-		def phone_add(self, p_arg1, p_arg2=None):
+		#	phone member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Phone
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Phone
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Phone()
+		def phone_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Phone()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".phone[" + str(idx) + "]"
 			self._phone[idx] = obj
 			self._phone[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._phone[idx].meta_.core = self.meta_.Core("phone")
 			self.meta_.active_objects_add_new("phone")
 
-		def phone_add_new(self, p_phone, p_index=None):
-			if p_index not in self._phone:
-				self.phone_add(p_phone, p_index)
+		def phone_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Phone()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._phone:
+				self.phone_add(obj, idx)
 
 		@property
 		def phone(self):
@@ -473,26 +638,41 @@ class Impt(ItomDoc):
 		def phone_indexes(self):
 			return self._phone.keys()
 
-		# spe member impt-object methods and properties
-		#
-		def spe_add(self, p_arg1, p_arg2=None):
+		#	spe member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Spe
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Spe
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Spe()
+		def spe_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Spe()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".spe[" + str(idx) + "]"
 			self._spe[idx] = obj
 			self._spe[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._spe[idx].meta_.core = self.meta_.Core("field_specialty")
 			self.meta_.active_objects_add_new("spe")
 
-		def spe_add_new(self, p_spe, p_index=None):
-			if p_index not in self._spe:
-				self.spe_add(p_spe, p_index)
+		def spe_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Spe()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._spe:
+				self.spe_add(obj, idx)
 
 		@property
 		def spe(self):
@@ -623,26 +803,41 @@ class Impt(ItomDoc):
 			# impt-object members
 			self._facil = {}
 
-		# facil member impt-object methods and properties
-		#
-		def facil_add(self, p_arg1, p_arg2=None):
+		#	facil member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Facil
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Facil
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Facil()
+		def facil_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Facil()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
 			self._facil[idx] = obj
 			self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._facil[idx].meta_.core = self.meta_.Core("facility")
 			self.meta_.active_objects_add_new("facil")
 
-		def facil_add_new(self, p_facil, p_index=None):
-			if p_index not in self._facil:
-				self.facil_add(p_facil, p_index)
+		def facil_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Facil()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._facil:
+				self.facil_add(obj, idx)
 
 		@property
 		def facil(self):
@@ -1045,26 +1240,41 @@ class Impt(ItomDoc):
 			# impt-object members
 			self._attr = {}
 
-		# attr member impt-object methods and properties
-		#
-		def attr_add(self, p_arg1, p_arg2=None):
+		#	attr member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Attr
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Attr
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Attr()
+		def attr_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Attr()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".attr[" + str(idx) + "]"
 			self._attr[idx] = obj
 			self._attr[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._attr[idx].meta_.core = self.meta_.Core("attribute")
 			self.meta_.active_objects_add_new("attr")
 
-		def attr_add_new(self, p_attr, p_index=None):
-			if p_index not in self._attr:
-				self.attr_add(p_attr, p_index)
+		def attr_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Attr()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._attr:
+				self.attr_add(obj, idx)
 
 		@property
 		def attr(self):
@@ -1170,26 +1380,41 @@ class Impt(ItomDoc):
 			self._facil = {}
 			self._spe = {}
 
-		# degree member impt-object methods and properties
-		#
-		def degree_add(self, p_arg1, p_arg2=None):
+		#	degree member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Degree
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Degree
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Degree()
+		def degree_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Degree()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".degree[" + str(idx) + "]"
 			self._degree[idx] = obj
 			self._degree[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._degree[idx].meta_.core = self.meta_.Core("degree")
 			self.meta_.active_objects_add_new("degree")
 
-		def degree_add_new(self, p_degree, p_index=None):
-			if p_index not in self._degree:
-				self.degree_add(p_degree, p_index)
+		def degree_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Degree()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._degree:
+				self.degree_add(obj, idx)
 
 		@property
 		def degree(self):
@@ -1201,26 +1426,41 @@ class Impt(ItomDoc):
 		def degree_indexes(self):
 			return self._degree.keys()
 
-		# facil member impt-object methods and properties
-		#
-		def facil_add(self, p_arg1, p_arg2=None):
+		#	facil member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Facil
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Facil
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Facil()
+		def facil_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Facil()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
 			self._facil[idx] = obj
 			self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._facil[idx].meta_.core = self.meta_.Core("facility")
 			self.meta_.active_objects_add_new("facil")
 
-		def facil_add_new(self, p_facil, p_index=None):
-			if p_index not in self._facil:
-				self.facil_add(p_facil, p_index)
+		def facil_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Facil()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._facil:
+				self.facil_add(obj, idx)
 
 		@property
 		def facil(self):
@@ -1232,26 +1472,41 @@ class Impt(ItomDoc):
 		def facil_indexes(self):
 			return self._facil.keys()
 
-		# spe member impt-object methods and properties
-		#
-		def spe_add(self, p_arg1, p_arg2=None):
+		#	spe member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Spe
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Spe
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Spe()
+		def spe_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Spe()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".spe[" + str(idx) + "]"
 			self._spe[idx] = obj
 			self._spe[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._spe[idx].meta_.core = self.meta_.Core("field_specialty")
 			self.meta_.active_objects_add_new("spe")
 
-		def spe_add_new(self, p_spe, p_index=None):
-			if p_index not in self._spe:
-				self.spe_add(p_spe, p_index)
+		def spe_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Spe()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._spe:
+				self.spe_add(obj, idx)
 
 		@property
 		def spe(self):
@@ -1448,26 +1703,41 @@ class Impt(ItomDoc):
 			self._mda = {}
 			self._parent = {}
 
-		# addr member impt-object methods and properties
-		#
-		def addr_add(self, p_arg1, p_arg2=None):
+		#	addr member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Addr
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Addr
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Addr()
+		def addr_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Addr()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".addr[" + str(idx) + "]"
 			self._addr[idx] = obj
 			self._addr[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._addr[idx].meta_.core = self.meta_.Core("address")
 			self.meta_.active_objects_add_new("addr")
 
-		def addr_add_new(self, p_addr, p_index=None):
-			if p_index not in self._addr:
-				self.addr_add(p_addr, p_index)
+		def addr_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Addr()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._addr:
+				self.addr_add(obj, idx)
 
 		@property
 		def addr(self):
@@ -1479,26 +1749,41 @@ class Impt(ItomDoc):
 		def addr_indexes(self):
 			return self._addr.keys()
 
-		# affil member impt-object methods and properties
-		#
-		def affil_add(self, p_arg1, p_arg2=None):
+		#	affil member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Affil
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Affil
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Affil()
+		def affil_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Affil()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".affil[" + str(idx) + "]"
 			self._affil[idx] = obj
 			self._affil[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._affil[idx].meta_.core = self.meta_.Core("affiliation")
 			self.meta_.active_objects_add_new("affil")
 
-		def affil_add_new(self, p_affil, p_index=None):
-			if p_index not in self._affil:
-				self.affil_add(p_affil, p_index)
+		def affil_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Affil()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._affil:
+				self.affil_add(obj, idx)
 
 		@property
 		def affil(self):
@@ -1510,26 +1795,41 @@ class Impt(ItomDoc):
 		def affil_indexes(self):
 			return self._affil.keys()
 
-		# alias member impt-object methods and properties
-		#
-		def alias_add(self, p_arg1, p_arg2=None):
+		#	alias member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Alias
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Alias
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Alias()
+		def alias_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Alias()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".alias[" + str(idx) + "]"
 			self._alias[idx] = obj
 			self._alias[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._alias[idx].meta_.core = self.meta_.Core("name")
 			self.meta_.active_objects_add_new("alias")
 
-		def alias_add_new(self, p_alias, p_index=None):
-			if p_index not in self._alias:
-				self.alias_add(p_alias, p_index)
+		def alias_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Alias()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._alias:
+				self.alias_add(obj, idx)
 
 		@property
 		def alias(self):
@@ -1541,26 +1841,41 @@ class Impt(ItomDoc):
 		def alias_indexes(self):
 			return self._alias.keys()
 
-		# awd member impt-object methods and properties
-		#
-		def awd_add(self, p_arg1, p_arg2=None):
+		#	awd member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Awd
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Awd
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Awd()
+		def awd_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
 			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._awd[idx].meta_.core = self.meta_.Core("award")
 			self.meta_.active_objects_add_new("awd")
 
-		def awd_add_new(self, p_awd, p_index=None):
-			if p_index not in self._awd:
-				self.awd_add(p_awd, p_index)
+		def awd_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._awd:
+				self.awd_add(obj, idx)
 
 		@property
 		def awd(self):
@@ -1572,26 +1887,41 @@ class Impt(ItomDoc):
 		def awd_indexes(self):
 			return self._awd.keys()
 
-		# datum member impt-object methods and properties
-		#
-		def datum_add(self, p_arg1, p_arg2=None):
+		#	datum member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Datum
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Datum
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Datum()
+		def datum_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
 			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._datum[idx].meta_.core = self.meta_.Core("datum")
 			self.meta_.active_objects_add_new("datum")
 
-		def datum_add_new(self, p_datum, p_index=None):
-			if p_index not in self._datum:
-				self.datum_add(p_datum, p_index)
+		def datum_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._datum:
+				self.datum_add(obj, idx)
 
 		@property
 		def datum(self):
@@ -1603,26 +1933,41 @@ class Impt(ItomDoc):
 		def datum_indexes(self):
 			return self._datum.keys()
 
-		# extid member impt-object methods and properties
-		#
-		def extid_add(self, p_arg1, p_arg2=None):
+		#	extid member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Extid
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Extid
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Extid()
+		def extid_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
 			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._extid[idx].meta_.core = self.meta_.Core("extid")
 			self.meta_.active_objects_add_new("extid")
 
-		def extid_add_new(self, p_extid, p_index=None):
-			if p_index not in self._extid:
-				self.extid_add(p_extid, p_index)
+		def extid_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._extid:
+				self.extid_add(obj, idx)
 
 		@property
 		def extid(self):
@@ -1634,26 +1979,41 @@ class Impt(ItomDoc):
 		def extid_indexes(self):
 			return self._extid.keys()
 
-		# ident member impt-object methods and properties
-		#
-		def ident_add(self, p_arg1, p_arg2=None):
+		#	ident member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Ident
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Ident
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Ident()
+		def ident_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
 			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._ident[idx].meta_.core = self.meta_.Core("identifier")
 			self.meta_.active_objects_add_new("ident")
 
-		def ident_add_new(self, p_ident, p_index=None):
-			if p_index not in self._ident:
-				self.ident_add(p_ident, p_index)
+		def ident_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._ident:
+				self.ident_add(obj, idx)
 
 		@property
 		def ident(self):
@@ -1665,25 +2025,40 @@ class Impt(ItomDoc):
 		def ident_indexes(self):
 			return self._ident.keys()
 
-		# lang member impt-object methods and properties
-		#
-		def lang_add(self, p_arg1, p_arg2=None):
+		#	lang member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Lang
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Lang
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Lang()
+		def lang_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lang()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".lang[" + str(idx) + "]"
 			self._lang[idx] = obj
 			self._lang[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self.meta_.active_objects_add_new("lang")
 
-		def lang_add_new(self, p_lang, p_index=None):
-			if p_index not in self._lang:
-				self.lang_add(p_lang, p_index)
+		def lang_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lang()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._lang:
+				self.lang_add(obj, idx)
 
 		@property
 		def lang(self):
@@ -1695,26 +2070,41 @@ class Impt(ItomDoc):
 		def lang_indexes(self):
 			return self._lang.keys()
 
-		# mda member impt-object methods and properties
-		#
-		def mda_add(self, p_arg1, p_arg2=None):
+		#	mda member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Mda
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Mda
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Mda()
+		def mda_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Mda()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".mda[" + str(idx) + "]"
 			self._mda[idx] = obj
 			self._mda[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._mda[idx].meta_.core = self.meta_.Core("media")
 			self.meta_.active_objects_add_new("mda")
 
-		def mda_add_new(self, p_mda, p_index=None):
-			if p_index not in self._mda:
-				self.mda_add(p_mda, p_index)
+		def mda_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Mda()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._mda:
+				self.mda_add(obj, idx)
 
 		@property
 		def mda(self):
@@ -1726,25 +2116,40 @@ class Impt(ItomDoc):
 		def mda_indexes(self):
 			return self._mda.keys()
 
-		# parent member impt-object methods and properties
-		#
-		def parent_add(self, p_arg1, p_arg2=None):
+		#	parent member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Parent
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Parent
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Parent()
+		def parent_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Parent()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".parent[" + str(idx) + "]"
 			self._parent[idx] = obj
 			self._parent[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self.meta_.active_objects_add_new("parent")
 
-		def parent_add_new(self, p_parent, p_index=None):
-			if p_index not in self._parent:
-				self.parent_add(p_parent, p_index)
+		def parent_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Parent()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._parent:
+				self.parent_add(obj, idx)
 
 		@property
 		def parent(self):
@@ -1958,26 +2363,41 @@ class Impt(ItomDoc):
 			self._ref = {}
 			self._spe = {}
 
-		# affil member impt-object methods and properties
-		#
-		def affil_add(self, p_arg1, p_arg2=None):
+		#	affil member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Affil
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Affil
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Affil()
+		def affil_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Affil()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".affil[" + str(idx) + "]"
 			self._affil[idx] = obj
 			self._affil[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._affil[idx].meta_.core = self.meta_.Core("affiliation")
 			self.meta_.active_objects_add_new("affil")
 
-		def affil_add_new(self, p_affil, p_index=None):
-			if p_index not in self._affil:
-				self.affil_add(p_affil, p_index)
+		def affil_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Affil()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._affil:
+				self.affil_add(obj, idx)
 
 		@property
 		def affil(self):
@@ -1989,26 +2409,41 @@ class Impt(ItomDoc):
 		def affil_indexes(self):
 			return self._affil.keys()
 
-		# awd member impt-object methods and properties
-		#
-		def awd_add(self, p_arg1, p_arg2=None):
+		#	awd member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Awd
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Awd
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Awd()
+		def awd_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
 			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._awd[idx].meta_.core = self.meta_.Core("award")
 			self.meta_.active_objects_add_new("awd")
 
-		def awd_add_new(self, p_awd, p_index=None):
-			if p_index not in self._awd:
-				self.awd_add(p_awd, p_index)
+		def awd_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._awd:
+				self.awd_add(obj, idx)
 
 		@property
 		def awd(self):
@@ -2020,26 +2455,41 @@ class Impt(ItomDoc):
 		def awd_indexes(self):
 			return self._awd.keys()
 
-		# datum member impt-object methods and properties
-		#
-		def datum_add(self, p_arg1, p_arg2=None):
+		#	datum member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Datum
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Datum
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Datum()
+		def datum_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
 			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._datum[idx].meta_.core = self.meta_.Core("datum")
 			self.meta_.active_objects_add_new("datum")
 
-		def datum_add_new(self, p_datum, p_index=None):
-			if p_index not in self._datum:
-				self.datum_add(p_datum, p_index)
+		def datum_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._datum:
+				self.datum_add(obj, idx)
 
 		@property
 		def datum(self):
@@ -2051,26 +2501,41 @@ class Impt(ItomDoc):
 		def datum_indexes(self):
 			return self._datum.keys()
 
-		# extid member impt-object methods and properties
-		#
-		def extid_add(self, p_arg1, p_arg2=None):
+		#	extid member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Extid
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Extid
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Extid()
+		def extid_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
 			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._extid[idx].meta_.core = self.meta_.Core("extid")
 			self.meta_.active_objects_add_new("extid")
 
-		def extid_add_new(self, p_extid, p_index=None):
-			if p_index not in self._extid:
-				self.extid_add(p_extid, p_index)
+		def extid_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._extid:
+				self.extid_add(obj, idx)
 
 		@property
 		def extid(self):
@@ -2082,26 +2547,41 @@ class Impt(ItomDoc):
 		def extid_indexes(self):
 			return self._extid.keys()
 
-		# ident member impt-object methods and properties
-		#
-		def ident_add(self, p_arg1, p_arg2=None):
+		#	ident member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Ident
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Ident
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Ident()
+		def ident_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
 			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._ident[idx].meta_.core = self.meta_.Core("identifier")
 			self.meta_.active_objects_add_new("ident")
 
-		def ident_add_new(self, p_ident, p_index=None):
-			if p_index not in self._ident:
-				self.ident_add(p_ident, p_index)
+		def ident_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._ident:
+				self.ident_add(obj, idx)
 
 		@property
 		def ident(self):
@@ -2113,26 +2593,41 @@ class Impt(ItomDoc):
 		def ident_indexes(self):
 			return self._ident.keys()
 
-		# ref member impt-object methods and properties
-		#
-		def ref_add(self, p_arg1, p_arg2=None):
+		#	ref member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Ref
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Ref
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Ref()
+		def ref_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ref()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".ref[" + str(idx) + "]"
 			self._ref[idx] = obj
 			self._ref[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._ref[idx].meta_.core = self.meta_.Core("referral")
 			self.meta_.active_objects_add_new("ref")
 
-		def ref_add_new(self, p_ref, p_index=None):
-			if p_index not in self._ref:
-				self.ref_add(p_ref, p_index)
+		def ref_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ref()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._ref:
+				self.ref_add(obj, idx)
 
 		@property
 		def ref(self):
@@ -2144,26 +2639,41 @@ class Impt(ItomDoc):
 		def ref_indexes(self):
 			return self._ref.keys()
 
-		# spe member impt-object methods and properties
-		#
-		def spe_add(self, p_arg1, p_arg2=None):
+		#	spe member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Spe
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Spe
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Spe()
+		def spe_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Spe()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".spe[" + str(idx) + "]"
 			self._spe[idx] = obj
 			self._spe[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._spe[idx].meta_.core = self.meta_.Core("field_specialty")
 			self.meta_.active_objects_add_new("spe")
 
-		def spe_add_new(self, p_spe, p_index=None):
-			if p_index not in self._spe:
-				self.spe_add(p_spe, p_index)
+		def spe_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Spe()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._spe:
+				self.spe_add(obj, idx)
 
 		@property
 		def spe(self):
@@ -2277,26 +2787,41 @@ class Impt(ItomDoc):
 			# impt-object members
 			self._prof = {}
 
-		# prof member impt-object methods and properties
-		#
-		def prof_add(self, p_arg1, p_arg2=None):
+		#	prof member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Prof
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Prof
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Prof()
+		def prof_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Prof()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".prof[" + str(idx) + "]"
 			self._prof[idx] = obj
 			self._prof[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._prof[idx].meta_.core = self.meta_.Core("profession")
 			self.meta_.active_objects_add_new("prof")
 
-		def prof_add_new(self, p_prof, p_index=None):
-			if p_index not in self._prof:
-				self.prof_add(p_prof, p_index)
+		def prof_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Prof()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._prof:
+				self.prof_add(obj, idx)
 
 		@property
 		def prof(self):
@@ -2587,26 +3112,41 @@ class Impt(ItomDoc):
 			# impt-object members
 			self._facil = {}
 
-		# facil member impt-object methods and properties
-		#
-		def facil_add(self, p_arg1, p_arg2=None):
+		#	facil member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Facil
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Facil
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Facil()
+		def facil_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Facil()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
 			self._facil[idx] = obj
 			self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._facil[idx].meta_.core = self.meta_.Core("facility")
 			self.meta_.active_objects_add_new("facil")
 
-		def facil_add_new(self, p_facil, p_index=None):
-			if p_index not in self._facil:
-				self.facil_add(p_facil, p_index)
+		def facil_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Facil()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._facil:
+				self.facil_add(obj, idx)
 
 		@property
 		def facil(self):
@@ -2948,26 +3488,41 @@ class Impt(ItomDoc):
 			self._insp = {}
 			self._lang = {}
 
-		# awd member impt-object methods and properties
-		#
-		def awd_add(self, p_arg1, p_arg2=None):
+		#	awd member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Awd
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Awd
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Awd()
+		def awd_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
 			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._awd[idx].meta_.core = self.meta_.Core("award")
 			self.meta_.active_objects_add_new("awd")
 
-		def awd_add_new(self, p_awd, p_index=None):
-			if p_index not in self._awd:
-				self.awd_add(p_awd, p_index)
+		def awd_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._awd:
+				self.awd_add(obj, idx)
 
 		@property
 		def awd(self):
@@ -2979,26 +3534,41 @@ class Impt(ItomDoc):
 		def awd_indexes(self):
 			return self._awd.keys()
 
-		# datum member impt-object methods and properties
-		#
-		def datum_add(self, p_arg1, p_arg2=None):
+		#	datum member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Datum
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Datum
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Datum()
+		def datum_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
 			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._datum[idx].meta_.core = self.meta_.Core("datum")
 			self.meta_.active_objects_add_new("datum")
 
-		def datum_add_new(self, p_datum, p_index=None):
-			if p_index not in self._datum:
-				self.datum_add(p_datum, p_index)
+		def datum_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._datum:
+				self.datum_add(obj, idx)
 
 		@property
 		def datum(self):
@@ -3010,26 +3580,41 @@ class Impt(ItomDoc):
 		def datum_indexes(self):
 			return self._datum.keys()
 
-		# extid member impt-object methods and properties
-		#
-		def extid_add(self, p_arg1, p_arg2=None):
+		#	extid member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Extid
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Extid
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Extid()
+		def extid_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
 			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._extid[idx].meta_.core = self.meta_.Core("extid")
 			self.meta_.active_objects_add_new("extid")
 
-		def extid_add_new(self, p_extid, p_index=None):
-			if p_index not in self._extid:
-				self.extid_add(p_extid, p_index)
+		def extid_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._extid:
+				self.extid_add(obj, idx)
 
 		@property
 		def extid(self):
@@ -3041,26 +3626,41 @@ class Impt(ItomDoc):
 		def extid_indexes(self):
 			return self._extid.keys()
 
-		# facil member impt-object methods and properties
-		#
-		def facil_add(self, p_arg1, p_arg2=None):
+		#	facil member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Facil
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Facil
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Facil()
+		def facil_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Facil()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
 			self._facil[idx] = obj
 			self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._facil[idx].meta_.core = self.meta_.Core("facility")
 			self.meta_.active_objects_add_new("facil")
 
-		def facil_add_new(self, p_facil, p_index=None):
-			if p_index not in self._facil:
-				self.facil_add(p_facil, p_index)
+		def facil_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Facil()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._facil:
+				self.facil_add(obj, idx)
 
 		@property
 		def facil(self):
@@ -3072,26 +3672,41 @@ class Impt(ItomDoc):
 		def facil_indexes(self):
 			return self._facil.keys()
 
-		# ident member impt-object methods and properties
-		#
-		def ident_add(self, p_arg1, p_arg2=None):
+		#	ident member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Ident
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Ident
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Ident()
+		def ident_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
 			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._ident[idx].meta_.core = self.meta_.Core("identifier")
 			self.meta_.active_objects_add_new("ident")
 
-		def ident_add_new(self, p_ident, p_index=None):
-			if p_index not in self._ident:
-				self.ident_add(p_ident, p_index)
+		def ident_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._ident:
+				self.ident_add(obj, idx)
 
 		@property
 		def ident(self):
@@ -3103,26 +3718,41 @@ class Impt(ItomDoc):
 		def ident_indexes(self):
 			return self._ident.keys()
 
-		# insp member impt-object methods and properties
-		#
-		def insp_add(self, p_arg1, p_arg2=None):
+		#	insp member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Insp
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Insp
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Insp()
+		def insp_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Insp()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".insp[" + str(idx) + "]"
 			self._insp[idx] = obj
 			self._insp[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._insp[idx].meta_.core = self.meta_.Core("ins_plan")
 			self.meta_.active_objects_add_new("insp")
 
-		def insp_add_new(self, p_insp, p_index=None):
-			if p_index not in self._insp:
-				self.insp_add(p_insp, p_index)
+		def insp_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Insp()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._insp:
+				self.insp_add(obj, idx)
 
 		@property
 		def insp(self):
@@ -3134,25 +3764,40 @@ class Impt(ItomDoc):
 		def insp_indexes(self):
 			return self._insp.keys()
 
-		# lang member impt-object methods and properties
-		#
-		def lang_add(self, p_arg1, p_arg2=None):
+		#	lang member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Lang
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Lang
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Lang()
+		def lang_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lang()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".lang[" + str(idx) + "]"
 			self._lang[idx] = obj
 			self._lang[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self.meta_.active_objects_add_new("lang")
 
-		def lang_add_new(self, p_lang, p_index=None):
-			if p_index not in self._lang:
-				self.lang_add(p_lang, p_index)
+		def lang_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lang()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._lang:
+				self.lang_add(obj, idx)
 
 		@property
 		def lang(self):
@@ -3361,26 +4006,41 @@ class Impt(ItomDoc):
 			self._sanc = {}
 			self._spe = {}
 
-		# alias member impt-object methods and properties
-		#
-		def alias_add(self, p_arg1, p_arg2=None):
+		#	alias member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Alias
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Alias
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Alias()
+		def alias_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Alias()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".alias[" + str(idx) + "]"
 			self._alias[idx] = obj
 			self._alias[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._alias[idx].meta_.core = self.meta_.Core("name")
 			self.meta_.active_objects_add_new("alias")
 
-		def alias_add_new(self, p_alias, p_index=None):
-			if p_index not in self._alias:
-				self.alias_add(p_alias, p_index)
+		def alias_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Alias()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._alias:
+				self.alias_add(obj, idx)
 
 		@property
 		def alias(self):
@@ -3392,26 +4052,41 @@ class Impt(ItomDoc):
 		def alias_indexes(self):
 			return self._alias.keys()
 
-		# asn member impt-object methods and properties
-		#
-		def asn_add(self, p_arg1, p_arg2=None):
+		#	asn member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Asn
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Asn
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Asn()
+		def asn_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Asn()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".asn[" + str(idx) + "]"
 			self._asn[idx] = obj
 			self._asn[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._asn[idx].meta_.core = self.meta_.Core("association")
 			self.meta_.active_objects_add_new("asn")
 
-		def asn_add_new(self, p_asn, p_index=None):
-			if p_index not in self._asn:
-				self.asn_add(p_asn, p_index)
+		def asn_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Asn()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._asn:
+				self.asn_add(obj, idx)
 
 		@property
 		def asn(self):
@@ -3423,26 +4098,41 @@ class Impt(ItomDoc):
 		def asn_indexes(self):
 			return self._asn.keys()
 
-		# awd member impt-object methods and properties
-		#
-		def awd_add(self, p_arg1, p_arg2=None):
+		#	awd member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Awd
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Awd
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Awd()
+		def awd_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
 			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._awd[idx].meta_.core = self.meta_.Core("award")
 			self.meta_.active_objects_add_new("awd")
 
-		def awd_add_new(self, p_awd, p_index=None):
-			if p_index not in self._awd:
-				self.awd_add(p_awd, p_index)
+		def awd_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Awd()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._awd:
+				self.awd_add(obj, idx)
 
 		@property
 		def awd(self):
@@ -3454,26 +4144,41 @@ class Impt(ItomDoc):
 		def awd_indexes(self):
 			return self._awd.keys()
 
-		# datum member impt-object methods and properties
-		#
-		def datum_add(self, p_arg1, p_arg2=None):
+		#	datum member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Datum
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Datum
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Datum()
+		def datum_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
 			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._datum[idx].meta_.core = self.meta_.Core("datum")
 			self.meta_.active_objects_add_new("datum")
 
-		def datum_add_new(self, p_datum, p_index=None):
-			if p_index not in self._datum:
-				self.datum_add(p_datum, p_index)
+		def datum_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Datum()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._datum:
+				self.datum_add(obj, idx)
 
 		@property
 		def datum(self):
@@ -3485,26 +4190,41 @@ class Impt(ItomDoc):
 		def datum_indexes(self):
 			return self._datum.keys()
 
-		# degree member impt-object methods and properties
-		#
-		def degree_add(self, p_arg1, p_arg2=None):
+		#	degree member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Degree
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Degree
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Degree()
+		def degree_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Degree()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".degree[" + str(idx) + "]"
 			self._degree[idx] = obj
 			self._degree[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._degree[idx].meta_.core = self.meta_.Core("degree")
 			self.meta_.active_objects_add_new("degree")
 
-		def degree_add_new(self, p_degree, p_index=None):
-			if p_index not in self._degree:
-				self.degree_add(p_degree, p_index)
+		def degree_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Degree()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._degree:
+				self.degree_add(obj, idx)
 
 		@property
 		def degree(self):
@@ -3516,26 +4236,41 @@ class Impt(ItomDoc):
 		def degree_indexes(self):
 			return self._degree.keys()
 
-		# edu member impt-object methods and properties
-		#
-		def edu_add(self, p_arg1, p_arg2=None):
+		#	edu member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Edu
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Edu
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Edu()
+		def edu_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Edu()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".edu[" + str(idx) + "]"
 			self._edu[idx] = obj
 			self._edu[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._edu[idx].meta_.core = self.meta_.Core("education")
 			self.meta_.active_objects_add_new("edu")
 
-		def edu_add_new(self, p_edu, p_index=None):
-			if p_index not in self._edu:
-				self.edu_add(p_edu, p_index)
+		def edu_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Edu()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._edu:
+				self.edu_add(obj, idx)
 
 		@property
 		def edu(self):
@@ -3547,26 +4282,41 @@ class Impt(ItomDoc):
 		def edu_indexes(self):
 			return self._edu.keys()
 
-		# extid member impt-object methods and properties
-		#
-		def extid_add(self, p_arg1, p_arg2=None):
+		#	extid member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Extid
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Extid
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Extid()
+		def extid_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
 			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._extid[idx].meta_.core = self.meta_.Core("extid")
 			self.meta_.active_objects_add_new("extid")
 
-		def extid_add_new(self, p_extid, p_index=None):
-			if p_index not in self._extid:
-				self.extid_add(p_extid, p_index)
+		def extid_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Extid()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._extid:
+				self.extid_add(obj, idx)
 
 		@property
 		def extid(self):
@@ -3578,26 +4328,41 @@ class Impt(ItomDoc):
 		def extid_indexes(self):
 			return self._extid.keys()
 
-		# ident member impt-object methods and properties
-		#
-		def ident_add(self, p_arg1, p_arg2=None):
+		#	ident member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Ident
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Ident
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Ident()
+		def ident_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
 			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._ident[idx].meta_.core = self.meta_.Core("identifier")
 			self.meta_.active_objects_add_new("ident")
 
-		def ident_add_new(self, p_ident, p_index=None):
-			if p_index not in self._ident:
-				self.ident_add(p_ident, p_index)
+		def ident_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Ident()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._ident:
+				self.ident_add(obj, idx)
 
 		@property
 		def ident(self):
@@ -3609,26 +4374,41 @@ class Impt(ItomDoc):
 		def ident_indexes(self):
 			return self._ident.keys()
 
-		# insp member impt-object methods and properties
-		#
-		def insp_add(self, p_arg1, p_arg2=None):
+		#	insp member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Insp
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Insp
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Insp()
+		def insp_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Insp()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".insp[" + str(idx) + "]"
 			self._insp[idx] = obj
 			self._insp[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._insp[idx].meta_.core = self.meta_.Core("ins_plan")
 			self.meta_.active_objects_add_new("insp")
 
-		def insp_add_new(self, p_insp, p_index=None):
-			if p_index not in self._insp:
-				self.insp_add(p_insp, p_index)
+		def insp_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Insp()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._insp:
+				self.insp_add(obj, idx)
 
 		@property
 		def insp(self):
@@ -3640,25 +4420,40 @@ class Impt(ItomDoc):
 		def insp_indexes(self):
 			return self._insp.keys()
 
-		# lang member impt-object methods and properties
-		#
-		def lang_add(self, p_arg1, p_arg2=None):
+		#	lang member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Lang
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Lang
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Lang()
+		def lang_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lang()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".lang[" + str(idx) + "]"
 			self._lang[idx] = obj
 			self._lang[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self.meta_.active_objects_add_new("lang")
 
-		def lang_add_new(self, p_lang, p_index=None):
-			if p_index not in self._lang:
-				self.lang_add(p_lang, p_index)
+		def lang_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lang()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._lang:
+				self.lang_add(obj, idx)
 
 		@property
 		def lang(self):
@@ -3670,26 +4465,41 @@ class Impt(ItomDoc):
 		def lang_indexes(self):
 			return self._lang.keys()
 
-		# lic member impt-object methods and properties
-		#
-		def lic_add(self, p_arg1, p_arg2=None):
+		#	lic member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Lic
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Lic
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Lic()
+		def lic_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lic()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".lic[" + str(idx) + "]"
 			self._lic[idx] = obj
 			self._lic[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._lic[idx].meta_.core = self.meta_.Core("license")
 			self.meta_.active_objects_add_new("lic")
 
-		def lic_add_new(self, p_lic, p_index=None):
-			if p_index not in self._lic:
-				self.lic_add(p_lic, p_index)
+		def lic_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Lic()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._lic:
+				self.lic_add(obj, idx)
 
 		@property
 		def lic(self):
@@ -3701,26 +4511,41 @@ class Impt(ItomDoc):
 		def lic_indexes(self):
 			return self._lic.keys()
 
-		# malp member impt-object methods and properties
-		#
-		def malp_add(self, p_arg1, p_arg2=None):
+		#	malp member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Malp
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Malp
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Malp()
+		def malp_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Malp()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".malp[" + str(idx) + "]"
 			self._malp[idx] = obj
 			self._malp[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._malp[idx].meta_.core = self.meta_.Core("malpractice")
 			self.meta_.active_objects_add_new("malp")
 
-		def malp_add_new(self, p_malp, p_index=None):
-			if p_index not in self._malp:
-				self.malp_add(p_malp, p_index)
+		def malp_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Malp()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._malp:
+				self.malp_add(obj, idx)
 
 		@property
 		def malp(self):
@@ -3732,26 +4557,41 @@ class Impt(ItomDoc):
 		def malp_indexes(self):
 			return self._malp.keys()
 
-		# mda member impt-object methods and properties
-		#
-		def mda_add(self, p_arg1, p_arg2=None):
+		#	mda member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Mda
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Mda
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Mda()
+		def mda_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Mda()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".mda[" + str(idx) + "]"
 			self._mda[idx] = obj
 			self._mda[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._mda[idx].meta_.core = self.meta_.Core("media")
 			self.meta_.active_objects_add_new("mda")
 
-		def mda_add_new(self, p_mda, p_index=None):
-			if p_index not in self._mda:
-				self.mda_add(p_mda, p_index)
+		def mda_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Mda()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._mda:
+				self.mda_add(obj, idx)
 
 		@property
 		def mda(self):
@@ -3763,26 +4603,41 @@ class Impt(ItomDoc):
 		def mda_indexes(self):
 			return self._mda.keys()
 
-		# pos member impt-object methods and properties
-		#
-		def pos_add(self, p_arg1, p_arg2=None):
+		#	pos member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Pos
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Pos
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Pos()
+		def pos_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Pos()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".pos[" + str(idx) + "]"
 			self._pos[idx] = obj
 			self._pos[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._pos[idx].meta_.core = self.meta_.Core("position")
 			self.meta_.active_objects_add_new("pos")
 
-		def pos_add_new(self, p_pos, p_index=None):
-			if p_index not in self._pos:
-				self.pos_add(p_pos, p_index)
+		def pos_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Pos()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._pos:
+				self.pos_add(obj, idx)
 
 		@property
 		def pos(self):
@@ -3794,26 +4649,41 @@ class Impt(ItomDoc):
 		def pos_indexes(self):
 			return self._pos.keys()
 
-		# pra member impt-object methods and properties
-		#
-		def pra_add(self, p_arg1, p_arg2=None):
+		#	pra member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Pra
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Pra
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Pra()
+		def pra_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Pra()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".pra[" + str(idx) + "]"
 			self._pra[idx] = obj
 			self._pra[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._pra[idx].meta_.core = self.meta_.Core("practice")
 			self.meta_.active_objects_add_new("pra")
 
-		def pra_add_new(self, p_pra, p_index=None):
-			if p_index not in self._pra:
-				self.pra_add(p_pra, p_index)
+		def pra_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Pra()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._pra:
+				self.pra_add(obj, idx)
 
 		@property
 		def pra(self):
@@ -3825,26 +4695,41 @@ class Impt(ItomDoc):
 		def pra_indexes(self):
 			return self._pra.keys()
 
-		# prof member impt-object methods and properties
-		#
-		def prof_add(self, p_arg1, p_arg2=None):
+		#	prof member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Prof
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Prof
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Prof()
+		def prof_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Prof()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".prof[" + str(idx) + "]"
 			self._prof[idx] = obj
 			self._prof[idx].meta_ = Itom.Meta_(path_text, idx, False)
 			self._prof[idx].meta_.core = self.meta_.Core("profession")
 			self.meta_.active_objects_add_new("prof")
 
-		def prof_add_new(self, p_prof, p_index=None):
-			if p_index not in self._prof:
-				self.prof_add(p_prof, p_index)
+		def prof_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Prof()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._prof:
+				self.prof_add(obj, idx)
 
 		@property
 		def prof(self):
@@ -3856,26 +4741,41 @@ class Impt(ItomDoc):
 		def prof_indexes(self):
 			return self._prof.keys()
 
-		# sanc member impt-object methods and properties
-		#
-		def sanc_add(self, p_arg1, p_arg2=None):
+		#	sanc member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Sanc
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Sanc
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Sanc()
+		def sanc_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Sanc()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".sanc[" + str(idx) + "]"
 			self._sanc[idx] = obj
 			self._sanc[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._sanc[idx].meta_.core = self.meta_.Core("sanction")
 			self.meta_.active_objects_add_new("sanc")
 
-		def sanc_add_new(self, p_sanc, p_index=None):
-			if p_index not in self._sanc:
-				self.sanc_add(p_sanc, p_index)
+		def sanc_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Sanc()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._sanc:
+				self.sanc_add(obj, idx)
 
 		@property
 		def sanc(self):
@@ -3887,26 +4787,41 @@ class Impt(ItomDoc):
 		def sanc_indexes(self):
 			return self._sanc.keys()
 
-		# spe member impt-object methods and properties
-		#
-		def spe_add(self, p_arg1, p_arg2=None):
+		#	spe member impt-object methods and properties
+		#		Parameters
+		#			arg1: instance of impt-object class Impt.Spe
+		#			arg2: index for instance, if None, 0 is assumed
+		#		- or -
+		#			arg1: index for instance, if None, 0 is assumed
+		#			      instance of impt-object class Impt.Spe
+		#			      created internally
 
-			if p_arg2 is None:
-				obj = self.Spe()
+		def spe_add(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Spe()
 				idx = p_arg1
 			else:
 				obj = p_arg1
-				idx = p_arg2
-
+				idx = args[0]
+			if idx is None:
+				idx = 0
 			path_text = self.meta_.path.text + ".spe[" + str(idx) + "]"
 			self._spe[idx] = obj
 			self._spe[idx].meta_ = Itom.Meta_(path_text, idx, True)
 			self._spe[idx].meta_.core = self.meta_.Core("field_specialty")
 			self.meta_.active_objects_add_new("spe")
 
-		def spe_add_new(self, p_spe, p_index=None):
-			if p_index not in self._spe:
-				self.spe_add(p_spe, p_index)
+		def spe_add_new(self, p_arg1, *args):
+			if len(args) == 0:
+				obj = Impt.Spe()
+				idx = p_arg1
+			else:
+				obj = p_arg1
+				idx = args[0]
+			if idx is None:
+				idx = 0
+			if idx not in self._spe:
+				self.spe_add(obj, idx)
 
 		@property
 		def spe(self):
