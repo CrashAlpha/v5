@@ -5,47 +5,38 @@ from db import *
 class Itom(object):
 	"""impt Template Object Model member object
 	
-		Naming convention for itom members:
+		Naming convention for impt members:
 			objects:		the impt class name with a leading underscore,
 							all lower-case as per the python naming convention for
-							private class members. A get/set @property method is declared
-							without the leading underscore (i.e. the member object class
-							name, all lowercase).
+							private class members. A get/set @property method is 
+							declared without the leading underscore (i.e. the member 
+							object class name, all lowercase). 
 			fields:		the impt member field name, all lowercase with no leading
 							underscore as per the python naming convention for public
 							members as well as no trailing underscore.
 			metadata:	information about the object other than member objects
-							and fields will be held in a variable name with no leading
-							underscore and a trailing underscore as per the python naming
-							convention for public class members that may conflict with a
-							reserved word. In this context, we are considering any
-							possible  impt class or field name a reserved word, so we use
-							this convention to make sure there is no conflict. Metadata
-							is typically instantiated in a public member named meta_.
-							Members of metadata classes and their members in turn
-							may follow the traditional python naming conventions as
-							there is no risk of collision with impt class/field names.
+							and fields will be held in a variable named "meta" from
+							class "Meta". These names are the only ones allowed in impt 
+							objects/classes that are NOT the names of impt members.
+							Therefore, "meta" is considered a reserved word and no
+							impt member may be named "meta".
 			classes:		python member class declarations corresponding to impt
 							objects names are the same as their impt class name with the
 							first letter being shifted to uppercase as per the python
-							naming convention for public class members. Metadata classes
-							that are immediate members of an itom class also have the
-							first letter shifted to uppercase, and must have a trailing
-							underscore. Metadata classes are typically named Meta_.
-							Members of metadata classes and their members in turn
-							may follow the traditional python naming conventions as
-							there is no risk of collision with impt class/field names.
+							naming convention for public class members. Every class has a
+							nested class named "Meta" to hold additional data other than
+							member classes and fields.
 	"""
 
 	#  Class variables
 	echo_status = False
-	active_document = None
+	document = None
 
 	def __init__(self, p_path=None, p_index=None):
 		if p_path is None:
-			self.meta_ = None
+			self.meta = None
 		else:
-			self.meta_ = Itom.Meta_(p_path, p_index)
+			self.meta = Itom.Meta(p_path, p_index)
 		return
 
 	def echo(self, args):
@@ -60,7 +51,7 @@ class Itom(object):
 		return re.sub(r"(.*)\.(.*)", r"\1", p_path_text)
 
 	def has_member(self, p_member_name, p_index=None):
-		"""Given a name and optionally an index, find out if this instance
+		"""Given a name and optionally an index, find out if this record
 		has an impt-member object or field of that name/index
 		"""
 		result = False
@@ -90,11 +81,11 @@ class Itom(object):
 		return result
 
 	def has_active_object(self, p_member_name, p_index=None):
-		"""Given a name and optionally an index, find out if this instance
+		"""Given a name and optionally an index, find out if this record
 		has an active impt-member object of that name/index
 		"""
 		
-		if p_member_name in self.meta_.active_objects:
+		if p_member_name in self.meta.active_objects:
 			result = self.has_member(p_member_name, p_index)
 		else:
 			result = False
@@ -104,7 +95,7 @@ class Itom(object):
 	def has(self, p_member_name, p_index=None):
 		"""Synonym for has_active_object to improve code legibility"""
 		
-		if p_member_name in self.meta_.active_objects:
+		if p_member_name in self.meta.active_objects:
 			result = self.has_member(p_member_name, p_index)
 		else:
 			result = False
@@ -113,7 +104,7 @@ class Itom(object):
 
 	def get_active_object(self, p_member_name, p_index=None):
 		"""Given a name and optionally an index, return the contents of 
-		an impt-member object collection that name/index or object instance
+		an impt-member object collection that name/index or object record
 		with that name and index
 		"""
 		
@@ -130,19 +121,19 @@ class Itom(object):
 		self.__dict__[field_key] = p_value
 
 		# Field not yet active? Make it active and update any active read map
-		if p_field_name not in self.meta_.active_fields:
-			self.meta_.active_fields.append(p_field_name)
+		if p_field_name not in self.meta.active_fields:
+			self.meta.active_fields.append(p_field_name)
 			
 			# Active document found?
 			# Make sure this field is included in the read map so that
 			# it's cleared with every impt table row read
-			if Itom.active_document is not None:
-				document = Itom.active_document
-				path_text = self.meta_.path.text + "." + p_field_name
+			if Itom.document is not None:
+				document = Itom.document
+				path_text = self.meta.path.text + "." + p_field_name
 				path = document.path_from_text(path_text)				
 				entry = document.ReadMapEntry(None, path)
 				entry_key = "*" + path_text
-				read_map = document.meta_.read_map
+				read_map = document.meta.read_map
 				read_map[entry_key] = entry
 				pass
 
@@ -150,14 +141,14 @@ class Itom(object):
 		"""Set flag to indicate whether this object and
 		its member objects should collapse indexes
 		- a collapsed index is a path notation method
-		  which does not require that an object instance
+		  which does not require that an object record
 		  include an index if it is known to be the only
 		  object in the collection, and its index key is 0.
 		  Use this for V4 impt compatability and easier coding.
 		  See member field @property defs for its implementation.
 		"""
-		self.meta_.collapse_not_indexed = p_value
-		for member in self.meta_.active_objects:
+		self.meta.collapse_not_indexed = p_value
+		for member in self.meta.active_objects:
 			exec_str = "indexes = self.%s_indexes()" % (member)
 			exec exec_str
 			for idx in indexes:
@@ -170,20 +161,20 @@ class Itom(object):
 	#  Itom nested-classes
 	#
 
-	class Meta_(object):
+	class Meta(object):
 		"""Meta data describing impt-object
 		"""
 
 		class Core(object):
-			"""This Itom.Core instance's DB relation information
+			"""This Itom.Core record's DB relation information
 			in the core schema
 			"""
 
-			class Meta_:
-				"""Itom.Meta_.Core meta data describing core-object"""
+			class Meta:
+				"""Itom.meta.Core meta data describing core-object"""
 
 				def __init__(self, p_class_code):
-					"""Itom.Meta_.Core.Meta_ constructor"""
+					"""Itom.meta.Core.meta constructor"""
 					self.class_code = p_class_code
 					self.context = None
 					self.table_name = None
@@ -192,16 +183,16 @@ class Itom(object):
 					self.active_columns = []
 
 			def __init__(self, p_class_code):
-				"""Itom.Meta_.Core constructor"""
-				self.meta_ = self.Meta_(p_class_code)
+				"""Itom.meta.Core constructor"""
+				self.meta = self.Meta(p_class_code)
 
 		def __init__(self, p_path_text, p_index, p_is_indexed=False):
-			"""Itom.Meta_ Constructor"""
+			"""Itom.meta Constructor"""
 			self.index = p_index
 			self.path = ItomDoc.Path()
 			self.path.text = p_path_text
-			self.path.instance = self
-			self.path.type = "instance"
+			self.path.record = self
+			self.path.type = "record"
 			self.context = re.sub(r"\[[0-9]\]", "", p_path_text)
 			self.name = re.sub(r"(.*)\.(.*)", r"\2", self.context)
 			self.core = None
@@ -210,7 +201,7 @@ class Itom(object):
 			self.is_indexed = p_is_indexed
 			self.is_root = False
 			self.collapse_not_indexed = True
-			self.parent_instance = None
+			self.parent_record = None
 			return
 
 
@@ -288,34 +279,61 @@ class ItomDoc(Itom):
 		if p_path_text is None:
 			p_path_text = "impt"
 		Itom.__init__(self, p_path_text)
-		self.meta_.is_root = True
-		self.meta_.read_map = None
-		self.meta_.table = None
-		self.meta_.exec_read = None
-		self.meta_.open_fail_messages = []
+		self.meta.id = None
+		self.input_source_id = None
+		self.meta.ident_type_id = None
+		self.meta.is_root = True
+		self.meta.read_map = None
+		self.meta.table = None
+		# self.meta.exec_read = None
+		self.meta.open_fail_messages = []
 		return
 
 	def open(self, p_table):
-		"""Open the document by loading an impt table's column data into a load map
-		which creates an internal python script. The script that can be used to
-		exec'd to assign the column values in an impt table row (as a row dict)
-		with keys that are the same as the impt column names)
-		to the member objects and fields in iTOM format of the iTOM document
+		"""Open the document, prepare it then load an impt table's column
+		data into a load map which contains the impt column names and the
+		related path to itom paths to fields in the document.
+		The read method  uses this map to read each impt row's column and assign
+		its value to the itom field.
 		"""
-		Itom.active_document = self
-		self.meta_.table = p_table
-		self.meta_.read_map = {}
+		Itom.document = self
+		self.meta.table = p_table
+		self.meta.id = None
+		self.meta.read_map = {}
+
+		# Find the input source and its source id, default identifier type
+		# and properties of the impt table
+		row = Db.select_top("""
+			SELECT input_source_id, properties
+			FROM mdx_core.input_resource
+			WHERE
+			(
+			   CASE
+			   WHEN resource LIKE '%%.%%' THEN '' 
+			   ELSE 'mdx_import.'
+			   END || resource
+			) = %s""", (self.meta.table,))
+		if row == None:
+			raise ValueError(
+					"Cannot find input_resource for impt table %s",
+					(self.meta.table,))
+
+		self.meta.ident_type_id = Db.select_value("""
+			SELECT identifier_type_id
+			FROM mdx_taxa.identifier_type
+			WHERE input_source_id = %s""", (row['input_source_id'],))
+		
 
 		# Create a local variable that has the same name as the
 		# document name (kinda dangerous!) as the load map is meant
 		# to be readable and should use the actual document name,
 		# not "self"
-		doc_obj_name = self.meta_.name
+		doc_obj_name = self.meta.name
 		exec "%s = self" % doc_obj_name
 		Db.sql("""
 				 SELECT * FROM mdx_lib.impt_table_parse_elements(%(imptTable)s)
 				 ORDER BY ordinal_position, element_ordinal_position""",
-				{"imptTable": self.meta_.table}
+				{"imptTable": self.meta.table}
 		)
 
 		skip_row = False
@@ -343,7 +361,7 @@ class ItomDoc(Itom):
 				if not row['is_valid']:
 					is_error = True
 					msg = "Failing"
-					self.meta_.open_fail_messages.append(msg)
+					self.meta.open_fail_messages.append(msg)
 				else:
 					msg = "Ignoring"
 
@@ -358,12 +376,12 @@ class ItomDoc(Itom):
 
 				if row['element_code'] <> "impt":
 					obj = row['element_code']
-					inst = "self.%s()" % row['element_code'].capitalize()
+					rec = "self.%s()" % row['element_code'].capitalize()
 					idx = row['element_index']
 					path = prv_path + ".%s[%d]" % (obj, idx)
 					direct_path = prv_direct_path + "._%s[%d]" % (obj, idx)
-					# add_obj = '%s_add_new(%s, "%s", %d)' % (obj, inst, path, idx)
-					add_obj = "%s_add_new(%s, %d)" % (obj, inst, idx)
+					# add_obj = '%s_add_new(%s, "%s", %d)' % (obj, rec, path, idx)
+					add_obj = "%s_add_new(%s, %d)" % (obj, rec, idx)
 					exec_str += "%s.%s\n" % (prv_direct_path, add_obj)
 
 					prv_path = path
@@ -374,11 +392,11 @@ class ItomDoc(Itom):
 				entry = self.ReadMapEntry(row['column_name'], self.Path())
 				#entry.path.text = "%s.%s" % (prv_direct_path, row['element_code'])
 				entry.path.text = "%s.%s" % (prv_path, row['element_code'])
-				self.meta_.read_map[row['column_name']] = entry
-				exec_str += '%s.meta_.active_fields_add_new("%s")\n' \
+				self.meta.read_map[row['column_name']] = entry
+				exec_str += '%s.meta.active_fields_add_new("%s")\n' \
 						% (prv_direct_path, row['element_code'])
-				exec_str += '%s.meta_.collapse_not_indexed = %s' \
-						% (prv_direct_path, self.meta_.collapse_not_indexed)
+				exec_str += '%s.meta.collapse_not_indexed = %s' \
+						% (prv_direct_path, self.meta.collapse_not_indexed)
 			else:
 				raise ValueError("Unexpected element_type_code '%'" \
 						% row['element_type_code'])
@@ -387,49 +405,49 @@ class ItomDoc(Itom):
 			if exec_str <> "":
 				# echo(exec_str)
 				exec exec_str
-
+		
 		# Redefine the load map entries, converting the path
-		# from a field type to an instance type and
-		# then assigning the path to the document instance
+		# from a field type to a record type and
+		# then assigning the path to the document record
 		# where it belongs
-		for col, entry in impt.meta_.read_map.iteritems():
+		for col, entry in impt.meta.read_map.iteritems():
 
 			# Render the full path object from the partial object's path text
-			# already in the load map, convert it to an instance
+			# already in the load map, convert it to a record
 			path_text = entry.path.text
 			entry.path = self.path_from_text(path_text)
 			entry.field = entry.path.field
 			entry.path.field = None
-			entry.path.type = "instance"
+			entry.path.type = "record"
 
-			# Find the parent instance of this instance,
+			# Find the parent record of this record,
 			# iterate through all parents making sure thay have references to
 			# their parents; as we are iterating backwards through the path
-			# save the list of instance references to later iterate forward
-			# through the path and build the core contexts for each instance
-			instances = []
-			child = entry.path.instance
-			while child.meta_.name <> self.meta_.name:
-				instances.insert(0, child)
-				parent = child.meta_.parent_instance
+			# save the list of record references to later iterate forward
+			# through the path and build the core contexts for each record
+			records = []
+			child = entry.path.record
+			while child.meta.name <> self.meta.name:
+				records.insert(0, child)
+				parent = child.meta.parent_record
 
 				if parent is None:
-					path_text = Itom.parent_path_text(child.meta_.path.text)
+					path_text = Itom.parent_path_text(child.meta.path.text)
 					# Indirect?
-					parent = self.path_from_text(path_text).instance
-					child.meta_.parent_instance = parent
+					parent = self.path_from_text(path_text).record
+					child.meta.parent_record = parent
 
 				child = parent
 
-			# Update all instances referenced in the path that don't have
+			# Update all records referenced in the path that don't have
 			# core contexts yet
 			core_class_codes = []
-			for inst in instances:
+			for rec in records:
 
-				if inst.meta_.core.meta_.class_code is None:
+				if rec.meta.core.meta.class_code is None:
 					continue
 
-				core_class_codes.append(inst.meta_.core.meta_.class_code)
+				core_class_codes.append(rec.meta.core.meta.class_code)
 				core_context = ".".join(core_class_codes)
 
 				# Rename contexts in special cases
@@ -440,39 +458,40 @@ class ItomDoc(Itom):
 				elif core_context == "provider.practice.facility.address.phone":
 					core_context = "provider.practice.phone"
 
-				if inst.meta_.core.meta_.context is None:
-					inst.meta_.core.meta_.context = core_context
+				if rec.meta.core.meta.context is None:
+					rec.meta.core.meta.context = core_context
 					core_table_name = core_context.replace(".", "_")
-					inst.meta_.core.meta_.table_name = core_table_name
-					inst.meta_.core.meta_.pkey_column_name = core_table_name + "_id"
-					inst.meta_.core.meta_.pkey_column_value = None
-
+					rec.meta.core.meta.table_name = core_table_name
+					rec.meta.core.meta.pkey_column_name = core_table_name + "_id"
+					rec.meta.core.meta.pkey_column_value = None
+		
 		return
 
 	def close(self):
 		"""Close the document, deallocate resources in use"""
-		self.meta_.read_map = None
-		self.meta_.table = None
-		self.meta_.exec_read = None
+		self.meta.read_map = None
+		self.meta.table = None
+		self.meta.exec_read = None
 
-		for field in self.meta_.active_fields:
+		for field in self.meta.active_fields:
 			delattr(self, "_" + field)
 
-		for obj in self.meta_.active_objects:
+		for obj in self.meta.active_objects:
 			delattr(self, "_" + obj)
 
-		delattr(self, "meta_")
+		delattr(self, "meta")
 		return
 
 	def read(self, p_row):
 		"""Read a dictionary whose keys are impt column names and
 		load them into the iTOM document
 		"""
+		self.meta.id = p_row['impt_id']
 
 		# Iterate through the load map entries and assign
-		# field values, reset core values in each instance
+		# field values, reset core values in each record
 		# declared in the map entry's path
-		for col, entry in self.meta_.read_map.iteritems():
+		for col, entry in self.meta.read_map.iteritems():
 
 			# No column name in the read map entry?
 			# This came from a manual impt field setting and impt field
@@ -482,11 +501,11 @@ class ItomDoc(Itom):
 			else:
 				value = p_row[entry.column_name]
 				
-			instance = entry.path.instance
+			record = entry.path.record
 			field = entry.field
-			instance.__dict__[field] = value
-			if instance.meta_.core is not None:
-				instance.meta_.core.meta_.pkey_value = None
+			record.__dict__[field] = value
+			if record.meta.core is not None:
+				record.meta.core.meta.pkey_value = None
 
 		return
 
@@ -495,10 +514,10 @@ class ItomDoc(Itom):
 		"""Rendering of a path from its text format to its
 		to an object representing the member information
 		about its type, as well as references to itself within
-		the document including collection and instance.
+		the document including collection and record.
 		"""
 		def __init__(self):
-			self.instance = None
+			self.record = None
 			self.collection = None
 			self.field = None
 			self.text = None
@@ -515,7 +534,7 @@ class ItomDoc(Itom):
 		# Default return state for empty document
 		result = ItomDoc.Path()
 		result.collection = None
-		result.instance = self
+		result.record = self
 		result.field = None
 		result.text = p_path_text
 		result.type = "document"
@@ -523,7 +542,7 @@ class ItomDoc(Itom):
 
 		# Iterate through path parts
 		i = 0
-		is_root = self.meta_.is_root
+		is_root = self.meta.is_root
 		obj_name = ""
 		prv_type = result.type
 		d_path =  re.split("(?:[\.\[\]]+)", p_path_text)
@@ -534,21 +553,21 @@ class ItomDoc(Itom):
 
 			if part <> "":
 				if prv_type == "collection":
-					result.type = "instance"
-					instance_idx = int(part)
-					result.instance = result.collection[instance_idx]
+					result.type = "record"
+					record_idx = int(part)
+					result.record = result.collection[record_idx]
 				else:
 					if is_root:
 						result.type = "document"
 						is_root = False
 					else:
 
-						if part in result.instance.meta_.active_fields \
+						if part in result.record.meta.active_fields \
 								and i == n_last:
 							result.type = "field"
 							result.field = "_" + part
 							result.value \
-									= result.instance.__dict__[result.field]
+									= result.record.__dict__[result.field]
 						else:
 
 							# Part not a direct path element? Make it one
@@ -559,8 +578,8 @@ class ItomDoc(Itom):
 
 							result.type = "collection"
 							result.collection \
-									= result.instance.__dict__[obj_name]
-							result.instance = None
+									= result.record.__dict__[obj_name]
+							result.record = None
 
 				prv_type = result.type
 

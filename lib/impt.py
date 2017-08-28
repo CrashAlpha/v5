@@ -1,5 +1,5 @@
-# From mdx_lib.impt_generate_itom_py()
-# Impt class ORM based on the Import Template Object Model (iTOM) generated on 2017-06-27 23:13:09.399215-04
+#
+# Impt class ORM based on the Import Template Object Model (iTOM) generated on 2017-08-24 17:04:27.83418-04
 from itom import *
 
 # Import Template object
@@ -40,11 +40,11 @@ class Impt(ItomDoc):
 			idx = args[0]
 		if idx is None:
 			idx = 0
-		path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
+		path_text = self.meta.path.text + ".facil[" + str(idx) + "]"
 		self._facil[idx] = obj
-		self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
-		self._facil[idx].meta_.core = self.meta_.Core("facility")
-		self.meta_.active_objects_add_new("facil")
+		self._facil[idx].meta = Itom.Meta(path_text, idx, False)
+		self._facil[idx].meta.core = self.meta.Core("facility")
+		self.meta.active_objects_add_new("facil")
 
 	def facil_add_new(self, p_arg1, *args):
 		if len(args) == 0:
@@ -60,10 +60,14 @@ class Impt(ItomDoc):
 
 	@property
 	def facil(self):
-		if self._facil.keys() == [0] and self.meta_.collapse_not_indexed:
+		if self._facil.keys() == [0] and self.meta.collapse_not_indexed:
 			return self._facil[0]
 		else:
 			return self._facil
+
+	def facils(self):
+		"""Value iterator for facil regardless of meta.collapse_not_indexed"""
+		return self._facil.itervalues()
 
 	def facil_indexes(self):
 		return self._facil.keys()
@@ -86,11 +90,11 @@ class Impt(ItomDoc):
 			idx = args[0]
 		if idx is None:
 			idx = 0
-		path_text = self.meta_.path.text + ".pro[" + str(idx) + "]"
+		path_text = self.meta.path.text + ".pro[" + str(idx) + "]"
 		self._pro[idx] = obj
-		self._pro[idx].meta_ = Itom.Meta_(path_text, idx, False)
-		self._pro[idx].meta_.core = self.meta_.Core("provider")
-		self.meta_.active_objects_add_new("pro")
+		self._pro[idx].meta = Itom.Meta(path_text, idx, False)
+		self._pro[idx].meta.core = self.meta.Core("provider")
+		self.meta.active_objects_add_new("pro")
 
 	def pro_add_new(self, p_arg1, *args):
 		if len(args) == 0:
@@ -106,10 +110,14 @@ class Impt(ItomDoc):
 
 	@property
 	def pro(self):
-		if self._pro.keys() == [0] and self.meta_.collapse_not_indexed:
+		if self._pro.keys() == [0] and self.meta.collapse_not_indexed:
 			return self._pro[0]
 		else:
 			return self._pro
+
+	def pros(self):
+		"""Value iterator for pro regardless of meta.collapse_not_indexed"""
+		return self._pro.itervalues()
 
 	def pro_indexes(self):
 		return self._pro.keys()
@@ -203,7 +211,6 @@ class Impt(ItomDoc):
 
 			# impt-field members
 			self._department = None
-			self._identifier = None
 			self._is_primary = None
 			self._lat = None
 			self._line1 = None
@@ -243,11 +250,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
-			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._awd[idx].meta_.core = self.meta_.Core("award")
-			self.meta_.active_objects_add_new("awd")
+			self._awd[idx].meta = Itom.Meta(path_text, idx, True)
+			self._awd[idx].meta.core = self.meta.Core("award")
+			self.meta.active_objects_add_new("awd")
 
 		def awd_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -263,10 +270,14 @@ class Impt(ItomDoc):
 
 		@property
 		def awd(self):
-			if self._awd.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._awd.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._awd[0]
 			else:
 				return self._awd
+
+		def awds(self):
+			"""Value iterator for awd regardless of meta.collapse_not_indexed"""
+			return self._awd.itervalues()
 
 		def awd_indexes(self):
 			return self._awd.keys()
@@ -289,11 +300,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
-			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._datum[idx].meta_.core = self.meta_.Core("datum")
-			self.meta_.active_objects_add_new("datum")
+			self._datum[idx].meta = Itom.Meta(path_text, idx, True)
+			self._datum[idx].meta.core = self.meta.Core("datum")
+			self.meta.active_objects_add_new("datum")
 
 		def datum_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -309,10 +320,14 @@ class Impt(ItomDoc):
 
 		@property
 		def datum(self):
-			if self._datum.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._datum.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._datum[0]
 			else:
 				return self._datum
+
+		def datums(self):
+			"""Value iterator for datum regardless of meta.collapse_not_indexed"""
+			return self._datum.itervalues()
 
 		def datum_indexes(self):
 			return self._datum.keys()
@@ -335,11 +350,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
-			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._extid[idx].meta_.core = self.meta_.Core("extid")
-			self.meta_.active_objects_add_new("extid")
+			self._extid[idx].meta = Itom.Meta(path_text, idx, True)
+			self._extid[idx].meta.core = self.meta.Core("extid")
+			self.meta.active_objects_add_new("extid")
 
 		def extid_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -355,10 +370,14 @@ class Impt(ItomDoc):
 
 		@property
 		def extid(self):
-			if self._extid.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._extid.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._extid[0]
 			else:
 				return self._extid
+
+		def extids(self):
+			"""Value iterator for extid regardless of meta.collapse_not_indexed"""
+			return self._extid.itervalues()
 
 		def extid_indexes(self):
 			return self._extid.keys()
@@ -381,11 +400,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
-			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._ident[idx].meta_.core = self.meta_.Core("identifier")
-			self.meta_.active_objects_add_new("ident")
+			self._ident[idx].meta = Itom.Meta(path_text, idx, True)
+			self._ident[idx].meta.core = self.meta.Core("identifier")
+			self.meta.active_objects_add_new("ident")
 
 		def ident_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -401,10 +420,14 @@ class Impt(ItomDoc):
 
 		@property
 		def ident(self):
-			if self._ident.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._ident.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._ident[0]
 			else:
 				return self._ident
+
+		def idents(self):
+			"""Value iterator for ident regardless of meta.collapse_not_indexed"""
+			return self._ident.itervalues()
 
 		def ident_indexes(self):
 			return self._ident.keys()
@@ -427,11 +450,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".insp[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".insp[" + str(idx) + "]"
 			self._insp[idx] = obj
-			self._insp[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._insp[idx].meta_.core = self.meta_.Core("ins_plan")
-			self.meta_.active_objects_add_new("insp")
+			self._insp[idx].meta = Itom.Meta(path_text, idx, True)
+			self._insp[idx].meta.core = self.meta.Core("ins_plan")
+			self.meta.active_objects_add_new("insp")
 
 		def insp_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -447,10 +470,14 @@ class Impt(ItomDoc):
 
 		@property
 		def insp(self):
-			if self._insp.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._insp.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._insp[0]
 			else:
 				return self._insp
+
+		def insps(self):
+			"""Value iterator for insp regardless of meta.collapse_not_indexed"""
+			return self._insp.itervalues()
 
 		def insp_indexes(self):
 			return self._insp.keys()
@@ -473,10 +500,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".lang[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".lang[" + str(idx) + "]"
 			self._lang[idx] = obj
-			self._lang[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self.meta_.active_objects_add_new("lang")
+			self._lang[idx].meta = Itom.Meta(path_text, idx, False)
+			self._lang[idx].meta.core = self.meta.Core(None)
+			self.meta.active_objects_add_new("lang")
 
 		def lang_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -492,10 +520,14 @@ class Impt(ItomDoc):
 
 		@property
 		def lang(self):
-			if self._lang.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._lang.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._lang[0]
 			else:
 				return self._lang
+
+		def langs(self):
+			"""Value iterator for lang regardless of meta.collapse_not_indexed"""
+			return self._lang.itervalues()
 
 		def lang_indexes(self):
 			return self._lang.keys()
@@ -518,11 +550,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".mda[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".mda[" + str(idx) + "]"
 			self._mda[idx] = obj
-			self._mda[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._mda[idx].meta_.core = self.meta_.Core("media")
-			self.meta_.active_objects_add_new("mda")
+			self._mda[idx].meta = Itom.Meta(path_text, idx, True)
+			self._mda[idx].meta.core = self.meta.Core("media")
+			self.meta.active_objects_add_new("mda")
 
 		def mda_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -538,10 +570,14 @@ class Impt(ItomDoc):
 
 		@property
 		def mda(self):
-			if self._mda.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._mda.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._mda[0]
 			else:
 				return self._mda
+
+		def mdas(self):
+			"""Value iterator for mda regardless of meta.collapse_not_indexed"""
+			return self._mda.itervalues()
 
 		def mda_indexes(self):
 			return self._mda.keys()
@@ -564,11 +600,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".parsed[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".parsed[" + str(idx) + "]"
 			self._parsed[idx] = obj
-			self._parsed[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._parsed[idx].meta_.core = self.meta_.Core("address")
-			self.meta_.active_objects_add_new("parsed")
+			self._parsed[idx].meta = Itom.Meta(path_text, idx, False)
+			self._parsed[idx].meta.core = self.meta.Core("address")
+			self.meta.active_objects_add_new("parsed")
 
 		def parsed_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -584,10 +620,14 @@ class Impt(ItomDoc):
 
 		@property
 		def parsed(self):
-			if self._parsed.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._parsed.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._parsed[0]
 			else:
 				return self._parsed
+
+		def parseds(self):
+			"""Value iterator for parsed regardless of meta.collapse_not_indexed"""
+			return self._parsed.itervalues()
 
 		def parsed_indexes(self):
 			return self._parsed.keys()
@@ -610,11 +650,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".phone[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".phone[" + str(idx) + "]"
 			self._phone[idx] = obj
-			self._phone[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._phone[idx].meta_.core = self.meta_.Core("phone")
-			self.meta_.active_objects_add_new("phone")
+			self._phone[idx].meta = Itom.Meta(path_text, idx, True)
+			self._phone[idx].meta.core = self.meta.Core("phone")
+			self.meta.active_objects_add_new("phone")
 
 		def phone_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -630,10 +670,14 @@ class Impt(ItomDoc):
 
 		@property
 		def phone(self):
-			if self._phone.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._phone.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._phone[0]
 			else:
 				return self._phone
+
+		def phones(self):
+			"""Value iterator for phone regardless of meta.collapse_not_indexed"""
+			return self._phone.itervalues()
 
 		def phone_indexes(self):
 			return self._phone.keys()
@@ -656,11 +700,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".spe[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".spe[" + str(idx) + "]"
 			self._spe[idx] = obj
-			self._spe[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._spe[idx].meta_.core = self.meta_.Core("field_specialty")
-			self.meta_.active_objects_add_new("spe")
+			self._spe[idx].meta = Itom.Meta(path_text, idx, True)
+			self._spe[idx].meta.core = self.meta.Core("field_specialty")
+			self.meta.active_objects_add_new("spe")
 
 		def spe_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -676,10 +720,14 @@ class Impt(ItomDoc):
 
 		@property
 		def spe(self):
-			if self._spe.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._spe.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._spe[0]
 			else:
 				return self._spe
+
+		def spes(self):
+			"""Value iterator for spe regardless of meta.collapse_not_indexed"""
+			return self._spe.itervalues()
 
 		def spe_indexes(self):
 			return self._spe.keys()
@@ -693,16 +741,6 @@ class Impt(ItomDoc):
 		@department.setter
 		def department(self, p_value):
 			self.set_field("department", p_value)
-
-		# identifier member impt-field methods and properties
-		#
-		@property
-		def identifier(self):
-			return self._identifier
-
-		@identifier.setter
-		def identifier(self, p_value):
-			self.set_field("identifier", p_value)
 
 		# is_primary member impt-field methods and properties
 		#
@@ -821,11 +859,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".facil[" + str(idx) + "]"
 			self._facil[idx] = obj
-			self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._facil[idx].meta_.core = self.meta_.Core("facility")
-			self.meta_.active_objects_add_new("facil")
+			self._facil[idx].meta = Itom.Meta(path_text, idx, False)
+			self._facil[idx].meta.core = self.meta.Core("facility")
+			self.meta.active_objects_add_new("facil")
 
 		def facil_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -841,10 +879,14 @@ class Impt(ItomDoc):
 
 		@property
 		def facil(self):
-			if self._facil.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._facil.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._facil[0]
 			else:
 				return self._facil
+
+		def facils(self):
+			"""Value iterator for facil regardless of meta.collapse_not_indexed"""
+			return self._facil.itervalues()
 
 		def facil_indexes(self):
 			return self._facil.keys()
@@ -1258,11 +1300,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".attr[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".attr[" + str(idx) + "]"
 			self._attr[idx] = obj
-			self._attr[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._attr[idx].meta_.core = self.meta_.Core("attribute")
-			self.meta_.active_objects_add_new("attr")
+			self._attr[idx].meta = Itom.Meta(path_text, idx, True)
+			self._attr[idx].meta.core = self.meta.Core("attribute")
+			self.meta.active_objects_add_new("attr")
 
 		def attr_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1278,10 +1320,14 @@ class Impt(ItomDoc):
 
 		@property
 		def attr(self):
-			if self._attr.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._attr.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._attr[0]
 			else:
 				return self._attr
+
+		def attrs(self):
+			"""Value iterator for attr regardless of meta.collapse_not_indexed"""
+			return self._attr.itervalues()
 
 		def attr_indexes(self):
 			return self._attr.keys()
@@ -1398,11 +1444,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".degree[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".degree[" + str(idx) + "]"
 			self._degree[idx] = obj
-			self._degree[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._degree[idx].meta_.core = self.meta_.Core("degree")
-			self.meta_.active_objects_add_new("degree")
+			self._degree[idx].meta = Itom.Meta(path_text, idx, False)
+			self._degree[idx].meta.core = self.meta.Core("degree")
+			self.meta.active_objects_add_new("degree")
 
 		def degree_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1418,10 +1464,14 @@ class Impt(ItomDoc):
 
 		@property
 		def degree(self):
-			if self._degree.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._degree.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._degree[0]
 			else:
 				return self._degree
+
+		def degrees(self):
+			"""Value iterator for degree regardless of meta.collapse_not_indexed"""
+			return self._degree.itervalues()
 
 		def degree_indexes(self):
 			return self._degree.keys()
@@ -1444,11 +1494,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".facil[" + str(idx) + "]"
 			self._facil[idx] = obj
-			self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._facil[idx].meta_.core = self.meta_.Core("facility")
-			self.meta_.active_objects_add_new("facil")
+			self._facil[idx].meta = Itom.Meta(path_text, idx, False)
+			self._facil[idx].meta.core = self.meta.Core("facility")
+			self.meta.active_objects_add_new("facil")
 
 		def facil_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1464,10 +1514,14 @@ class Impt(ItomDoc):
 
 		@property
 		def facil(self):
-			if self._facil.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._facil.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._facil[0]
 			else:
 				return self._facil
+
+		def facils(self):
+			"""Value iterator for facil regardless of meta.collapse_not_indexed"""
+			return self._facil.itervalues()
 
 		def facil_indexes(self):
 			return self._facil.keys()
@@ -1490,11 +1544,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".spe[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".spe[" + str(idx) + "]"
 			self._spe[idx] = obj
-			self._spe[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._spe[idx].meta_.core = self.meta_.Core("field_specialty")
-			self.meta_.active_objects_add_new("spe")
+			self._spe[idx].meta = Itom.Meta(path_text, idx, True)
+			self._spe[idx].meta.core = self.meta.Core("field_specialty")
+			self.meta.active_objects_add_new("spe")
 
 		def spe_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1510,10 +1564,14 @@ class Impt(ItomDoc):
 
 		@property
 		def spe(self):
-			if self._spe.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._spe.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._spe[0]
 			else:
 				return self._spe
+
+		def spes(self):
+			"""Value iterator for spe regardless of meta.collapse_not_indexed"""
+			return self._spe.itervalues()
 
 		def spe_indexes(self):
 			return self._spe.keys()
@@ -1721,11 +1779,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".addr[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".addr[" + str(idx) + "]"
 			self._addr[idx] = obj
-			self._addr[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._addr[idx].meta_.core = self.meta_.Core("address")
-			self.meta_.active_objects_add_new("addr")
+			self._addr[idx].meta = Itom.Meta(path_text, idx, False)
+			self._addr[idx].meta.core = self.meta.Core("address")
+			self.meta.active_objects_add_new("addr")
 
 		def addr_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1741,10 +1799,14 @@ class Impt(ItomDoc):
 
 		@property
 		def addr(self):
-			if self._addr.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._addr.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._addr[0]
 			else:
 				return self._addr
+
+		def addrs(self):
+			"""Value iterator for addr regardless of meta.collapse_not_indexed"""
+			return self._addr.itervalues()
 
 		def addr_indexes(self):
 			return self._addr.keys()
@@ -1767,11 +1829,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".affil[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".affil[" + str(idx) + "]"
 			self._affil[idx] = obj
-			self._affil[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._affil[idx].meta_.core = self.meta_.Core("affiliation")
-			self.meta_.active_objects_add_new("affil")
+			self._affil[idx].meta = Itom.Meta(path_text, idx, True)
+			self._affil[idx].meta.core = self.meta.Core("affiliation")
+			self.meta.active_objects_add_new("affil")
 
 		def affil_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1787,10 +1849,14 @@ class Impt(ItomDoc):
 
 		@property
 		def affil(self):
-			if self._affil.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._affil.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._affil[0]
 			else:
 				return self._affil
+
+		def affils(self):
+			"""Value iterator for affil regardless of meta.collapse_not_indexed"""
+			return self._affil.itervalues()
 
 		def affil_indexes(self):
 			return self._affil.keys()
@@ -1813,11 +1879,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".alias[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".alias[" + str(idx) + "]"
 			self._alias[idx] = obj
-			self._alias[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._alias[idx].meta_.core = self.meta_.Core("name")
-			self.meta_.active_objects_add_new("alias")
+			self._alias[idx].meta = Itom.Meta(path_text, idx, False)
+			self._alias[idx].meta.core = self.meta.Core("name")
+			self.meta.active_objects_add_new("alias")
 
 		def alias_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1833,10 +1899,14 @@ class Impt(ItomDoc):
 
 		@property
 		def alias(self):
-			if self._alias.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._alias.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._alias[0]
 			else:
 				return self._alias
+
+		def aliases(self):
+			"""Value iterator for alias regardless of meta.collapse_not_indexed"""
+			return self._alias.itervalues()
 
 		def alias_indexes(self):
 			return self._alias.keys()
@@ -1859,11 +1929,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
-			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._awd[idx].meta_.core = self.meta_.Core("award")
-			self.meta_.active_objects_add_new("awd")
+			self._awd[idx].meta = Itom.Meta(path_text, idx, True)
+			self._awd[idx].meta.core = self.meta.Core("award")
+			self.meta.active_objects_add_new("awd")
 
 		def awd_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1879,10 +1949,14 @@ class Impt(ItomDoc):
 
 		@property
 		def awd(self):
-			if self._awd.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._awd.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._awd[0]
 			else:
 				return self._awd
+
+		def awds(self):
+			"""Value iterator for awd regardless of meta.collapse_not_indexed"""
+			return self._awd.itervalues()
 
 		def awd_indexes(self):
 			return self._awd.keys()
@@ -1905,11 +1979,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
-			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._datum[idx].meta_.core = self.meta_.Core("datum")
-			self.meta_.active_objects_add_new("datum")
+			self._datum[idx].meta = Itom.Meta(path_text, idx, True)
+			self._datum[idx].meta.core = self.meta.Core("datum")
+			self.meta.active_objects_add_new("datum")
 
 		def datum_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1925,10 +1999,14 @@ class Impt(ItomDoc):
 
 		@property
 		def datum(self):
-			if self._datum.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._datum.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._datum[0]
 			else:
 				return self._datum
+
+		def datums(self):
+			"""Value iterator for datum regardless of meta.collapse_not_indexed"""
+			return self._datum.itervalues()
 
 		def datum_indexes(self):
 			return self._datum.keys()
@@ -1951,11 +2029,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
-			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._extid[idx].meta_.core = self.meta_.Core("extid")
-			self.meta_.active_objects_add_new("extid")
+			self._extid[idx].meta = Itom.Meta(path_text, idx, True)
+			self._extid[idx].meta.core = self.meta.Core("extid")
+			self.meta.active_objects_add_new("extid")
 
 		def extid_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -1971,10 +2049,14 @@ class Impt(ItomDoc):
 
 		@property
 		def extid(self):
-			if self._extid.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._extid.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._extid[0]
 			else:
 				return self._extid
+
+		def extids(self):
+			"""Value iterator for extid regardless of meta.collapse_not_indexed"""
+			return self._extid.itervalues()
 
 		def extid_indexes(self):
 			return self._extid.keys()
@@ -1997,11 +2079,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
-			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._ident[idx].meta_.core = self.meta_.Core("identifier")
-			self.meta_.active_objects_add_new("ident")
+			self._ident[idx].meta = Itom.Meta(path_text, idx, True)
+			self._ident[idx].meta.core = self.meta.Core("identifier")
+			self.meta.active_objects_add_new("ident")
 
 		def ident_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2017,10 +2099,14 @@ class Impt(ItomDoc):
 
 		@property
 		def ident(self):
-			if self._ident.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._ident.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._ident[0]
 			else:
 				return self._ident
+
+		def idents(self):
+			"""Value iterator for ident regardless of meta.collapse_not_indexed"""
+			return self._ident.itervalues()
 
 		def ident_indexes(self):
 			return self._ident.keys()
@@ -2043,10 +2129,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".lang[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".lang[" + str(idx) + "]"
 			self._lang[idx] = obj
-			self._lang[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self.meta_.active_objects_add_new("lang")
+			self._lang[idx].meta = Itom.Meta(path_text, idx, False)
+			self._lang[idx].meta.core = self.meta.Core(None)
+			self.meta.active_objects_add_new("lang")
 
 		def lang_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2062,10 +2149,14 @@ class Impt(ItomDoc):
 
 		@property
 		def lang(self):
-			if self._lang.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._lang.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._lang[0]
 			else:
 				return self._lang
+
+		def langs(self):
+			"""Value iterator for lang regardless of meta.collapse_not_indexed"""
+			return self._lang.itervalues()
 
 		def lang_indexes(self):
 			return self._lang.keys()
@@ -2088,11 +2179,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".mda[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".mda[" + str(idx) + "]"
 			self._mda[idx] = obj
-			self._mda[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._mda[idx].meta_.core = self.meta_.Core("media")
-			self.meta_.active_objects_add_new("mda")
+			self._mda[idx].meta = Itom.Meta(path_text, idx, True)
+			self._mda[idx].meta.core = self.meta.Core("media")
+			self.meta.active_objects_add_new("mda")
 
 		def mda_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2108,10 +2199,14 @@ class Impt(ItomDoc):
 
 		@property
 		def mda(self):
-			if self._mda.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._mda.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._mda[0]
 			else:
 				return self._mda
+
+		def mdas(self):
+			"""Value iterator for mda regardless of meta.collapse_not_indexed"""
+			return self._mda.itervalues()
 
 		def mda_indexes(self):
 			return self._mda.keys()
@@ -2134,10 +2229,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".parent[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".parent[" + str(idx) + "]"
 			self._parent[idx] = obj
-			self._parent[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self.meta_.active_objects_add_new("parent")
+			self._parent[idx].meta = Itom.Meta(path_text, idx, False)
+			self._parent[idx].meta.core = self.meta.Core(None)
+			self.meta.active_objects_add_new("parent")
 
 		def parent_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2153,10 +2249,14 @@ class Impt(ItomDoc):
 
 		@property
 		def parent(self):
-			if self._parent.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._parent.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._parent[0]
 			else:
 				return self._parent
+
+		def parents(self):
+			"""Value iterator for parent regardless of meta.collapse_not_indexed"""
+			return self._parent.itervalues()
 
 		def parent_indexes(self):
 			return self._parent.keys()
@@ -2381,11 +2481,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".affil[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".affil[" + str(idx) + "]"
 			self._affil[idx] = obj
-			self._affil[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._affil[idx].meta_.core = self.meta_.Core("affiliation")
-			self.meta_.active_objects_add_new("affil")
+			self._affil[idx].meta = Itom.Meta(path_text, idx, True)
+			self._affil[idx].meta.core = self.meta.Core("affiliation")
+			self.meta.active_objects_add_new("affil")
 
 		def affil_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2401,10 +2501,14 @@ class Impt(ItomDoc):
 
 		@property
 		def affil(self):
-			if self._affil.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._affil.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._affil[0]
 			else:
 				return self._affil
+
+		def affils(self):
+			"""Value iterator for affil regardless of meta.collapse_not_indexed"""
+			return self._affil.itervalues()
 
 		def affil_indexes(self):
 			return self._affil.keys()
@@ -2427,11 +2531,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
-			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._awd[idx].meta_.core = self.meta_.Core("award")
-			self.meta_.active_objects_add_new("awd")
+			self._awd[idx].meta = Itom.Meta(path_text, idx, True)
+			self._awd[idx].meta.core = self.meta.Core("award")
+			self.meta.active_objects_add_new("awd")
 
 		def awd_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2447,10 +2551,14 @@ class Impt(ItomDoc):
 
 		@property
 		def awd(self):
-			if self._awd.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._awd.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._awd[0]
 			else:
 				return self._awd
+
+		def awds(self):
+			"""Value iterator for awd regardless of meta.collapse_not_indexed"""
+			return self._awd.itervalues()
 
 		def awd_indexes(self):
 			return self._awd.keys()
@@ -2473,11 +2581,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
-			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._datum[idx].meta_.core = self.meta_.Core("datum")
-			self.meta_.active_objects_add_new("datum")
+			self._datum[idx].meta = Itom.Meta(path_text, idx, True)
+			self._datum[idx].meta.core = self.meta.Core("datum")
+			self.meta.active_objects_add_new("datum")
 
 		def datum_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2493,10 +2601,14 @@ class Impt(ItomDoc):
 
 		@property
 		def datum(self):
-			if self._datum.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._datum.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._datum[0]
 			else:
 				return self._datum
+
+		def datums(self):
+			"""Value iterator for datum regardless of meta.collapse_not_indexed"""
+			return self._datum.itervalues()
 
 		def datum_indexes(self):
 			return self._datum.keys()
@@ -2519,11 +2631,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
-			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._extid[idx].meta_.core = self.meta_.Core("extid")
-			self.meta_.active_objects_add_new("extid")
+			self._extid[idx].meta = Itom.Meta(path_text, idx, True)
+			self._extid[idx].meta.core = self.meta.Core("extid")
+			self.meta.active_objects_add_new("extid")
 
 		def extid_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2539,10 +2651,14 @@ class Impt(ItomDoc):
 
 		@property
 		def extid(self):
-			if self._extid.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._extid.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._extid[0]
 			else:
 				return self._extid
+
+		def extids(self):
+			"""Value iterator for extid regardless of meta.collapse_not_indexed"""
+			return self._extid.itervalues()
 
 		def extid_indexes(self):
 			return self._extid.keys()
@@ -2565,11 +2681,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
-			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._ident[idx].meta_.core = self.meta_.Core("identifier")
-			self.meta_.active_objects_add_new("ident")
+			self._ident[idx].meta = Itom.Meta(path_text, idx, True)
+			self._ident[idx].meta.core = self.meta.Core("identifier")
+			self.meta.active_objects_add_new("ident")
 
 		def ident_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2585,10 +2701,14 @@ class Impt(ItomDoc):
 
 		@property
 		def ident(self):
-			if self._ident.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._ident.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._ident[0]
 			else:
 				return self._ident
+
+		def idents(self):
+			"""Value iterator for ident regardless of meta.collapse_not_indexed"""
+			return self._ident.itervalues()
 
 		def ident_indexes(self):
 			return self._ident.keys()
@@ -2611,11 +2731,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".ref[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".ref[" + str(idx) + "]"
 			self._ref[idx] = obj
-			self._ref[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._ref[idx].meta_.core = self.meta_.Core("referral")
-			self.meta_.active_objects_add_new("ref")
+			self._ref[idx].meta = Itom.Meta(path_text, idx, True)
+			self._ref[idx].meta.core = self.meta.Core("referral")
+			self.meta.active_objects_add_new("ref")
 
 		def ref_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2631,10 +2751,14 @@ class Impt(ItomDoc):
 
 		@property
 		def ref(self):
-			if self._ref.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._ref.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._ref[0]
 			else:
 				return self._ref
+
+		def refs(self):
+			"""Value iterator for ref regardless of meta.collapse_not_indexed"""
+			return self._ref.itervalues()
 
 		def ref_indexes(self):
 			return self._ref.keys()
@@ -2657,11 +2781,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".spe[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".spe[" + str(idx) + "]"
 			self._spe[idx] = obj
-			self._spe[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._spe[idx].meta_.core = self.meta_.Core("field_specialty")
-			self.meta_.active_objects_add_new("spe")
+			self._spe[idx].meta = Itom.Meta(path_text, idx, True)
+			self._spe[idx].meta.core = self.meta.Core("field_specialty")
+			self.meta.active_objects_add_new("spe")
 
 		def spe_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2677,10 +2801,14 @@ class Impt(ItomDoc):
 
 		@property
 		def spe(self):
-			if self._spe.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._spe.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._spe[0]
 			else:
 				return self._spe
+
+		def spes(self):
+			"""Value iterator for spe regardless of meta.collapse_not_indexed"""
+			return self._spe.itervalues()
 
 		def spe_indexes(self):
 			return self._spe.keys()
@@ -2805,11 +2933,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".prof[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".prof[" + str(idx) + "]"
 			self._prof[idx] = obj
-			self._prof[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._prof[idx].meta_.core = self.meta_.Core("profession")
-			self.meta_.active_objects_add_new("prof")
+			self._prof[idx].meta = Itom.Meta(path_text, idx, False)
+			self._prof[idx].meta.core = self.meta.Core("profession")
+			self.meta.active_objects_add_new("prof")
 
 		def prof_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -2825,10 +2953,14 @@ class Impt(ItomDoc):
 
 		@property
 		def prof(self):
-			if self._prof.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._prof.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._prof[0]
 			else:
 				return self._prof
+
+		def profs(self):
+			"""Value iterator for prof regardless of meta.collapse_not_indexed"""
+			return self._prof.itervalues()
 
 		def prof_indexes(self):
 			return self._prof.keys()
@@ -3130,11 +3262,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".facil[" + str(idx) + "]"
 			self._facil[idx] = obj
-			self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._facil[idx].meta_.core = self.meta_.Core("facility")
-			self.meta_.active_objects_add_new("facil")
+			self._facil[idx].meta = Itom.Meta(path_text, idx, False)
+			self._facil[idx].meta.core = self.meta.Core("facility")
+			self.meta.active_objects_add_new("facil")
 
 		def facil_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -3150,10 +3282,14 @@ class Impt(ItomDoc):
 
 		@property
 		def facil(self):
-			if self._facil.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._facil.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._facil[0]
 			else:
 				return self._facil
+
+		def facils(self):
+			"""Value iterator for facil regardless of meta.collapse_not_indexed"""
+			return self._facil.itervalues()
 
 		def facil_indexes(self):
 			return self._facil.keys()
@@ -3475,6 +3611,7 @@ class Impt(ItomDoc):
 			self._is_primary = None
 			self._is_principal = None
 			self._medicare_carrier_number = None
+			self._name = None
 			self._record_status = None
 			self._title = None
 			self._type_desc = None
@@ -3506,11 +3643,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
-			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._awd[idx].meta_.core = self.meta_.Core("award")
-			self.meta_.active_objects_add_new("awd")
+			self._awd[idx].meta = Itom.Meta(path_text, idx, True)
+			self._awd[idx].meta.core = self.meta.Core("award")
+			self.meta.active_objects_add_new("awd")
 
 		def awd_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -3526,10 +3663,14 @@ class Impt(ItomDoc):
 
 		@property
 		def awd(self):
-			if self._awd.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._awd.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._awd[0]
 			else:
 				return self._awd
+
+		def awds(self):
+			"""Value iterator for awd regardless of meta.collapse_not_indexed"""
+			return self._awd.itervalues()
 
 		def awd_indexes(self):
 			return self._awd.keys()
@@ -3552,11 +3693,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
-			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._datum[idx].meta_.core = self.meta_.Core("datum")
-			self.meta_.active_objects_add_new("datum")
+			self._datum[idx].meta = Itom.Meta(path_text, idx, True)
+			self._datum[idx].meta.core = self.meta.Core("datum")
+			self.meta.active_objects_add_new("datum")
 
 		def datum_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -3572,10 +3713,14 @@ class Impt(ItomDoc):
 
 		@property
 		def datum(self):
-			if self._datum.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._datum.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._datum[0]
 			else:
 				return self._datum
+
+		def datums(self):
+			"""Value iterator for datum regardless of meta.collapse_not_indexed"""
+			return self._datum.itervalues()
 
 		def datum_indexes(self):
 			return self._datum.keys()
@@ -3598,11 +3743,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
-			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._extid[idx].meta_.core = self.meta_.Core("extid")
-			self.meta_.active_objects_add_new("extid")
+			self._extid[idx].meta = Itom.Meta(path_text, idx, True)
+			self._extid[idx].meta.core = self.meta.Core("extid")
+			self.meta.active_objects_add_new("extid")
 
 		def extid_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -3618,10 +3763,14 @@ class Impt(ItomDoc):
 
 		@property
 		def extid(self):
-			if self._extid.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._extid.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._extid[0]
 			else:
 				return self._extid
+
+		def extids(self):
+			"""Value iterator for extid regardless of meta.collapse_not_indexed"""
+			return self._extid.itervalues()
 
 		def extid_indexes(self):
 			return self._extid.keys()
@@ -3644,11 +3793,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".facil[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".facil[" + str(idx) + "]"
 			self._facil[idx] = obj
-			self._facil[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._facil[idx].meta_.core = self.meta_.Core("facility")
-			self.meta_.active_objects_add_new("facil")
+			self._facil[idx].meta = Itom.Meta(path_text, idx, False)
+			self._facil[idx].meta.core = self.meta.Core("facility")
+			self.meta.active_objects_add_new("facil")
 
 		def facil_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -3664,10 +3813,14 @@ class Impt(ItomDoc):
 
 		@property
 		def facil(self):
-			if self._facil.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._facil.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._facil[0]
 			else:
 				return self._facil
+
+		def facils(self):
+			"""Value iterator for facil regardless of meta.collapse_not_indexed"""
+			return self._facil.itervalues()
 
 		def facil_indexes(self):
 			return self._facil.keys()
@@ -3690,11 +3843,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
-			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._ident[idx].meta_.core = self.meta_.Core("identifier")
-			self.meta_.active_objects_add_new("ident")
+			self._ident[idx].meta = Itom.Meta(path_text, idx, True)
+			self._ident[idx].meta.core = self.meta.Core("identifier")
+			self.meta.active_objects_add_new("ident")
 
 		def ident_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -3710,10 +3863,14 @@ class Impt(ItomDoc):
 
 		@property
 		def ident(self):
-			if self._ident.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._ident.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._ident[0]
 			else:
 				return self._ident
+
+		def idents(self):
+			"""Value iterator for ident regardless of meta.collapse_not_indexed"""
+			return self._ident.itervalues()
 
 		def ident_indexes(self):
 			return self._ident.keys()
@@ -3736,11 +3893,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".insp[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".insp[" + str(idx) + "]"
 			self._insp[idx] = obj
-			self._insp[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._insp[idx].meta_.core = self.meta_.Core("ins_plan")
-			self.meta_.active_objects_add_new("insp")
+			self._insp[idx].meta = Itom.Meta(path_text, idx, True)
+			self._insp[idx].meta.core = self.meta.Core("ins_plan")
+			self.meta.active_objects_add_new("insp")
 
 		def insp_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -3756,10 +3913,14 @@ class Impt(ItomDoc):
 
 		@property
 		def insp(self):
-			if self._insp.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._insp.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._insp[0]
 			else:
 				return self._insp
+
+		def insps(self):
+			"""Value iterator for insp regardless of meta.collapse_not_indexed"""
+			return self._insp.itervalues()
 
 		def insp_indexes(self):
 			return self._insp.keys()
@@ -3782,10 +3943,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".lang[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".lang[" + str(idx) + "]"
 			self._lang[idx] = obj
-			self._lang[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self.meta_.active_objects_add_new("lang")
+			self._lang[idx].meta = Itom.Meta(path_text, idx, False)
+			self._lang[idx].meta.core = self.meta.Core(None)
+			self.meta.active_objects_add_new("lang")
 
 		def lang_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -3801,10 +3963,14 @@ class Impt(ItomDoc):
 
 		@property
 		def lang(self):
-			if self._lang.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._lang.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._lang[0]
 			else:
 				return self._lang
+
+		def langs(self):
+			"""Value iterator for lang regardless of meta.collapse_not_indexed"""
+			return self._lang.itervalues()
 
 		def lang_indexes(self):
 			return self._lang.keys()
@@ -3919,6 +4085,16 @@ class Impt(ItomDoc):
 		def medicare_carrier_number(self, p_value):
 			self.set_field("medicare_carrier_number", p_value)
 
+		# name member impt-field methods and properties
+		#
+		@property
+		def name(self):
+			return self._name
+
+		@name.setter
+		def name(self, p_value):
+			self.set_field("name", p_value)
+
 		# record_status member impt-field methods and properties
 		#
 		@property
@@ -4024,11 +4200,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".alias[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".alias[" + str(idx) + "]"
 			self._alias[idx] = obj
-			self._alias[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._alias[idx].meta_.core = self.meta_.Core("name")
-			self.meta_.active_objects_add_new("alias")
+			self._alias[idx].meta = Itom.Meta(path_text, idx, False)
+			self._alias[idx].meta.core = self.meta.Core("name")
+			self.meta.active_objects_add_new("alias")
 
 		def alias_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4044,10 +4220,14 @@ class Impt(ItomDoc):
 
 		@property
 		def alias(self):
-			if self._alias.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._alias.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._alias[0]
 			else:
 				return self._alias
+
+		def aliases(self):
+			"""Value iterator for alias regardless of meta.collapse_not_indexed"""
+			return self._alias.itervalues()
 
 		def alias_indexes(self):
 			return self._alias.keys()
@@ -4070,11 +4250,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".asn[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".asn[" + str(idx) + "]"
 			self._asn[idx] = obj
-			self._asn[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._asn[idx].meta_.core = self.meta_.Core("association")
-			self.meta_.active_objects_add_new("asn")
+			self._asn[idx].meta = Itom.Meta(path_text, idx, True)
+			self._asn[idx].meta.core = self.meta.Core("association")
+			self.meta.active_objects_add_new("asn")
 
 		def asn_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4090,10 +4270,14 @@ class Impt(ItomDoc):
 
 		@property
 		def asn(self):
-			if self._asn.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._asn.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._asn[0]
 			else:
 				return self._asn
+
+		def asns(self):
+			"""Value iterator for asn regardless of meta.collapse_not_indexed"""
+			return self._asn.itervalues()
 
 		def asn_indexes(self):
 			return self._asn.keys()
@@ -4116,11 +4300,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".awd[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".awd[" + str(idx) + "]"
 			self._awd[idx] = obj
-			self._awd[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._awd[idx].meta_.core = self.meta_.Core("award")
-			self.meta_.active_objects_add_new("awd")
+			self._awd[idx].meta = Itom.Meta(path_text, idx, True)
+			self._awd[idx].meta.core = self.meta.Core("award")
+			self.meta.active_objects_add_new("awd")
 
 		def awd_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4136,10 +4320,14 @@ class Impt(ItomDoc):
 
 		@property
 		def awd(self):
-			if self._awd.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._awd.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._awd[0]
 			else:
 				return self._awd
+
+		def awds(self):
+			"""Value iterator for awd regardless of meta.collapse_not_indexed"""
+			return self._awd.itervalues()
 
 		def awd_indexes(self):
 			return self._awd.keys()
@@ -4162,11 +4350,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".datum[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".datum[" + str(idx) + "]"
 			self._datum[idx] = obj
-			self._datum[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._datum[idx].meta_.core = self.meta_.Core("datum")
-			self.meta_.active_objects_add_new("datum")
+			self._datum[idx].meta = Itom.Meta(path_text, idx, True)
+			self._datum[idx].meta.core = self.meta.Core("datum")
+			self.meta.active_objects_add_new("datum")
 
 		def datum_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4182,10 +4370,14 @@ class Impt(ItomDoc):
 
 		@property
 		def datum(self):
-			if self._datum.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._datum.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._datum[0]
 			else:
 				return self._datum
+
+		def datums(self):
+			"""Value iterator for datum regardless of meta.collapse_not_indexed"""
+			return self._datum.itervalues()
 
 		def datum_indexes(self):
 			return self._datum.keys()
@@ -4208,11 +4400,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".degree[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".degree[" + str(idx) + "]"
 			self._degree[idx] = obj
-			self._degree[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._degree[idx].meta_.core = self.meta_.Core("degree")
-			self.meta_.active_objects_add_new("degree")
+			self._degree[idx].meta = Itom.Meta(path_text, idx, False)
+			self._degree[idx].meta.core = self.meta.Core("degree")
+			self.meta.active_objects_add_new("degree")
 
 		def degree_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4228,10 +4420,14 @@ class Impt(ItomDoc):
 
 		@property
 		def degree(self):
-			if self._degree.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._degree.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._degree[0]
 			else:
 				return self._degree
+
+		def degrees(self):
+			"""Value iterator for degree regardless of meta.collapse_not_indexed"""
+			return self._degree.itervalues()
 
 		def degree_indexes(self):
 			return self._degree.keys()
@@ -4254,11 +4450,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".edu[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".edu[" + str(idx) + "]"
 			self._edu[idx] = obj
-			self._edu[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._edu[idx].meta_.core = self.meta_.Core("education")
-			self.meta_.active_objects_add_new("edu")
+			self._edu[idx].meta = Itom.Meta(path_text, idx, True)
+			self._edu[idx].meta.core = self.meta.Core("education")
+			self.meta.active_objects_add_new("edu")
 
 		def edu_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4274,10 +4470,14 @@ class Impt(ItomDoc):
 
 		@property
 		def edu(self):
-			if self._edu.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._edu.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._edu[0]
 			else:
 				return self._edu
+
+		def edus(self):
+			"""Value iterator for edu regardless of meta.collapse_not_indexed"""
+			return self._edu.itervalues()
 
 		def edu_indexes(self):
 			return self._edu.keys()
@@ -4300,11 +4500,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".extid[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".extid[" + str(idx) + "]"
 			self._extid[idx] = obj
-			self._extid[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._extid[idx].meta_.core = self.meta_.Core("extid")
-			self.meta_.active_objects_add_new("extid")
+			self._extid[idx].meta = Itom.Meta(path_text, idx, True)
+			self._extid[idx].meta.core = self.meta.Core("extid")
+			self.meta.active_objects_add_new("extid")
 
 		def extid_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4320,10 +4520,14 @@ class Impt(ItomDoc):
 
 		@property
 		def extid(self):
-			if self._extid.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._extid.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._extid[0]
 			else:
 				return self._extid
+
+		def extids(self):
+			"""Value iterator for extid regardless of meta.collapse_not_indexed"""
+			return self._extid.itervalues()
 
 		def extid_indexes(self):
 			return self._extid.keys()
@@ -4346,11 +4550,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".ident[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".ident[" + str(idx) + "]"
 			self._ident[idx] = obj
-			self._ident[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._ident[idx].meta_.core = self.meta_.Core("identifier")
-			self.meta_.active_objects_add_new("ident")
+			self._ident[idx].meta = Itom.Meta(path_text, idx, True)
+			self._ident[idx].meta.core = self.meta.Core("identifier")
+			self.meta.active_objects_add_new("ident")
 
 		def ident_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4366,10 +4570,14 @@ class Impt(ItomDoc):
 
 		@property
 		def ident(self):
-			if self._ident.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._ident.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._ident[0]
 			else:
 				return self._ident
+
+		def idents(self):
+			"""Value iterator for ident regardless of meta.collapse_not_indexed"""
+			return self._ident.itervalues()
 
 		def ident_indexes(self):
 			return self._ident.keys()
@@ -4392,11 +4600,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".insp[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".insp[" + str(idx) + "]"
 			self._insp[idx] = obj
-			self._insp[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._insp[idx].meta_.core = self.meta_.Core("ins_plan")
-			self.meta_.active_objects_add_new("insp")
+			self._insp[idx].meta = Itom.Meta(path_text, idx, True)
+			self._insp[idx].meta.core = self.meta.Core("ins_plan")
+			self.meta.active_objects_add_new("insp")
 
 		def insp_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4412,10 +4620,14 @@ class Impt(ItomDoc):
 
 		@property
 		def insp(self):
-			if self._insp.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._insp.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._insp[0]
 			else:
 				return self._insp
+
+		def insps(self):
+			"""Value iterator for insp regardless of meta.collapse_not_indexed"""
+			return self._insp.itervalues()
 
 		def insp_indexes(self):
 			return self._insp.keys()
@@ -4438,10 +4650,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".lang[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".lang[" + str(idx) + "]"
 			self._lang[idx] = obj
-			self._lang[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self.meta_.active_objects_add_new("lang")
+			self._lang[idx].meta = Itom.Meta(path_text, idx, False)
+			self._lang[idx].meta.core = self.meta.Core(None)
+			self.meta.active_objects_add_new("lang")
 
 		def lang_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4457,10 +4670,14 @@ class Impt(ItomDoc):
 
 		@property
 		def lang(self):
-			if self._lang.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._lang.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._lang[0]
 			else:
 				return self._lang
+
+		def langs(self):
+			"""Value iterator for lang regardless of meta.collapse_not_indexed"""
+			return self._lang.itervalues()
 
 		def lang_indexes(self):
 			return self._lang.keys()
@@ -4483,11 +4700,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".lic[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".lic[" + str(idx) + "]"
 			self._lic[idx] = obj
-			self._lic[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._lic[idx].meta_.core = self.meta_.Core("license")
-			self.meta_.active_objects_add_new("lic")
+			self._lic[idx].meta = Itom.Meta(path_text, idx, False)
+			self._lic[idx].meta.core = self.meta.Core("license")
+			self.meta.active_objects_add_new("lic")
 
 		def lic_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4503,10 +4720,14 @@ class Impt(ItomDoc):
 
 		@property
 		def lic(self):
-			if self._lic.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._lic.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._lic[0]
 			else:
 				return self._lic
+
+		def lics(self):
+			"""Value iterator for lic regardless of meta.collapse_not_indexed"""
+			return self._lic.itervalues()
 
 		def lic_indexes(self):
 			return self._lic.keys()
@@ -4529,11 +4750,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".malp[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".malp[" + str(idx) + "]"
 			self._malp[idx] = obj
-			self._malp[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._malp[idx].meta_.core = self.meta_.Core("malpractice")
-			self.meta_.active_objects_add_new("malp")
+			self._malp[idx].meta = Itom.Meta(path_text, idx, True)
+			self._malp[idx].meta.core = self.meta.Core("malpractice")
+			self.meta.active_objects_add_new("malp")
 
 		def malp_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4549,10 +4770,14 @@ class Impt(ItomDoc):
 
 		@property
 		def malp(self):
-			if self._malp.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._malp.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._malp[0]
 			else:
 				return self._malp
+
+		def malps(self):
+			"""Value iterator for malp regardless of meta.collapse_not_indexed"""
+			return self._malp.itervalues()
 
 		def malp_indexes(self):
 			return self._malp.keys()
@@ -4575,11 +4800,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".mda[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".mda[" + str(idx) + "]"
 			self._mda[idx] = obj
-			self._mda[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._mda[idx].meta_.core = self.meta_.Core("media")
-			self.meta_.active_objects_add_new("mda")
+			self._mda[idx].meta = Itom.Meta(path_text, idx, True)
+			self._mda[idx].meta.core = self.meta.Core("media")
+			self.meta.active_objects_add_new("mda")
 
 		def mda_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4595,10 +4820,14 @@ class Impt(ItomDoc):
 
 		@property
 		def mda(self):
-			if self._mda.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._mda.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._mda[0]
 			else:
 				return self._mda
+
+		def mdas(self):
+			"""Value iterator for mda regardless of meta.collapse_not_indexed"""
+			return self._mda.itervalues()
 
 		def mda_indexes(self):
 			return self._mda.keys()
@@ -4621,11 +4850,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".pos[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".pos[" + str(idx) + "]"
 			self._pos[idx] = obj
-			self._pos[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._pos[idx].meta_.core = self.meta_.Core("position")
-			self.meta_.active_objects_add_new("pos")
+			self._pos[idx].meta = Itom.Meta(path_text, idx, True)
+			self._pos[idx].meta.core = self.meta.Core("position")
+			self.meta.active_objects_add_new("pos")
 
 		def pos_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4641,10 +4870,14 @@ class Impt(ItomDoc):
 
 		@property
 		def pos(self):
-			if self._pos.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._pos.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._pos[0]
 			else:
 				return self._pos
+
+		def poses(self):
+			"""Value iterator for pos regardless of meta.collapse_not_indexed"""
+			return self._pos.itervalues()
 
 		def pos_indexes(self):
 			return self._pos.keys()
@@ -4667,11 +4900,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".pra[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".pra[" + str(idx) + "]"
 			self._pra[idx] = obj
-			self._pra[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._pra[idx].meta_.core = self.meta_.Core("practice")
-			self.meta_.active_objects_add_new("pra")
+			self._pra[idx].meta = Itom.Meta(path_text, idx, True)
+			self._pra[idx].meta.core = self.meta.Core("practice")
+			self.meta.active_objects_add_new("pra")
 
 		def pra_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4687,10 +4920,14 @@ class Impt(ItomDoc):
 
 		@property
 		def pra(self):
-			if self._pra.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._pra.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._pra[0]
 			else:
 				return self._pra
+
+		def pras(self):
+			"""Value iterator for pra regardless of meta.collapse_not_indexed"""
+			return self._pra.itervalues()
 
 		def pra_indexes(self):
 			return self._pra.keys()
@@ -4713,11 +4950,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".prof[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".prof[" + str(idx) + "]"
 			self._prof[idx] = obj
-			self._prof[idx].meta_ = Itom.Meta_(path_text, idx, False)
-			self._prof[idx].meta_.core = self.meta_.Core("profession")
-			self.meta_.active_objects_add_new("prof")
+			self._prof[idx].meta = Itom.Meta(path_text, idx, False)
+			self._prof[idx].meta.core = self.meta.Core("profession")
+			self.meta.active_objects_add_new("prof")
 
 		def prof_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4733,10 +4970,14 @@ class Impt(ItomDoc):
 
 		@property
 		def prof(self):
-			if self._prof.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._prof.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._prof[0]
 			else:
 				return self._prof
+
+		def profs(self):
+			"""Value iterator for prof regardless of meta.collapse_not_indexed"""
+			return self._prof.itervalues()
 
 		def prof_indexes(self):
 			return self._prof.keys()
@@ -4759,11 +5000,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".sanc[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".sanc[" + str(idx) + "]"
 			self._sanc[idx] = obj
-			self._sanc[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._sanc[idx].meta_.core = self.meta_.Core("sanction")
-			self.meta_.active_objects_add_new("sanc")
+			self._sanc[idx].meta = Itom.Meta(path_text, idx, True)
+			self._sanc[idx].meta.core = self.meta.Core("sanction")
+			self.meta.active_objects_add_new("sanc")
 
 		def sanc_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4779,10 +5020,14 @@ class Impt(ItomDoc):
 
 		@property
 		def sanc(self):
-			if self._sanc.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._sanc.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._sanc[0]
 			else:
 				return self._sanc
+
+		def sancs(self):
+			"""Value iterator for sanc regardless of meta.collapse_not_indexed"""
+			return self._sanc.itervalues()
 
 		def sanc_indexes(self):
 			return self._sanc.keys()
@@ -4805,11 +5050,11 @@ class Impt(ItomDoc):
 				idx = args[0]
 			if idx is None:
 				idx = 0
-			path_text = self.meta_.path.text + ".spe[" + str(idx) + "]"
+			path_text = self.meta.path.text + ".spe[" + str(idx) + "]"
 			self._spe[idx] = obj
-			self._spe[idx].meta_ = Itom.Meta_(path_text, idx, True)
-			self._spe[idx].meta_.core = self.meta_.Core("field_specialty")
-			self.meta_.active_objects_add_new("spe")
+			self._spe[idx].meta = Itom.Meta(path_text, idx, True)
+			self._spe[idx].meta.core = self.meta.Core("field_specialty")
+			self.meta.active_objects_add_new("spe")
 
 		def spe_add_new(self, p_arg1, *args):
 			if len(args) == 0:
@@ -4825,10 +5070,14 @@ class Impt(ItomDoc):
 
 		@property
 		def spe(self):
-			if self._spe.keys() == [0] and self.meta_.collapse_not_indexed:
+			if self._spe.keys() == [0] and self.meta.collapse_not_indexed:
 				return self._spe[0]
 			else:
 				return self._spe
+
+		def spes(self):
+			"""Value iterator for spe regardless of meta.collapse_not_indexed"""
+			return self._spe.itervalues()
 
 		def spe_indexes(self):
 			return self._spe.keys()
@@ -5347,8 +5596,10 @@ class Impt(ItomDoc):
 			self._is_primary = None
 			self._is_principal = None
 			self._record_status = None
+			self._role_code = None
 			self._self_rept_cert = None
 			self._status_code = None
+			self._type_code = None
 
 		# apndx member impt-field methods and properties
 		#
@@ -5410,6 +5661,16 @@ class Impt(ItomDoc):
 		def record_status(self, p_value):
 			self.set_field("record_status", p_value)
 
+		# role_code member impt-field methods and properties
+		#
+		@property
+		def role_code(self):
+			return self._role_code
+
+		@role_code.setter
+		def role_code(self, p_value):
+			self.set_field("role_code", p_value)
+
 		# self_rept_cert member impt-field methods and properties
 		#
 		@property
@@ -5429,4 +5690,14 @@ class Impt(ItomDoc):
 		@status_code.setter
 		def status_code(self, p_value):
 			self.set_field("status_code", p_value)
+
+		# type_code member impt-field methods and properties
+		#
+		@property
+		def type_code(self):
+			return self._type_code
+
+		@type_code.setter
+		def type_code(self, p_value):
+			self.set_field("type_code", p_value)
 
